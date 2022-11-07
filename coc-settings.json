@@ -1,0 +1,23 @@
+{
+  "codeLens.enable":true,
+  "java.signatureHelp.enabled":true,
+  "java.referencesCodeLens.enabled":true,
+  "java.jdt.ls.vmargs": "-javaagent:D:\\dev\\lombok\\lombok.jar",
+  "python.formatting.provider": "black",
+  "python.pythonPath": "C:/Users/advay/AppData/Local/Programs/Python/Python39/python.exe",
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        ".stack.yaml",
+        ".hie-bios",
+        "BUILD.bazel",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": ["hs", "lhs", "haskell"]
+    }
+  }
+}
+
