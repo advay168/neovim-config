@@ -1,5 +1,4 @@
 set nocompatible
-let mapleader = " "
 set encoding=utf-8
 set fileformats=unix,dos
 set number
@@ -38,18 +37,11 @@ set undoreload=10000        " number of lines to save for undo
 
 set relativenumber
 
-inoremap jk <Esc>
 nmap <C-j> :exe 'edit' stdpath('config').'/init.vim' <cr>
-
-xmap <Leader>c "+y
-nmap <Leader>v "+p
 
 if (has("termguicolors"))
   set termguicolors
 endif
-
-nnoremap <silent> <C-6> <C-^>
-nnoremap <silent><esc> :noh<return><esc>
 
 call plug#begin()
 
@@ -95,8 +87,6 @@ call plug#end()
 colorscheme gruvbox
 
 let g:airline_theme="gruvbox"
-
-lua require 'colorizer'.setup()
 
 nmap <silent> <Leader>oh :FSLeft<cr>
 nmap <silent> <Leader>oH :FSSplitLeft<cr>
@@ -175,37 +165,6 @@ endfunction
 
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-lua << EOF
- require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
-  highlight = {
-    enable = true,
-  },
-nt_cpp_tools = {
-    enable = true,
-    preview = {
-        quit = 'q', -- optional keymapping for quit preview
-        accept = '<tab>' -- optional keymapping for accept preview
-    },
-    header_extension = 'h', -- optional
-    source_extension = 'cxx', -- optional
-    custom_define_class_function_commands = { -- optional
-        TSCppImplWrite = {
-            output_handle = require'nvim-treesitter.nt-cpp-tools.output_handlers'.get_add_to_cpp()
-        }
-        --[[
-        <your impl function custom command name> = {
-            output_handle = function (str, context)
-                -- string contains the class implementation
-                -- do whatever you want to do with it
-            end
-        }
-        ]]
-    }
-}
-}
-EOF
-
 let g:airline#extensions#tabline#enabled = 1
 
 function MirrorNerdTreeIfOneWindow()
@@ -218,3 +177,5 @@ function MirrorNerdTreeIfOneWindow()
 endfunction
 
 autocmd TabEnter * silent exe MirrorNerdTreeIfOneWindow()
+
+lua require("init")
