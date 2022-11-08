@@ -1,20 +1,6 @@
 set nocompatible
-set encoding=utf-8
-set fileformats=unix,dos
-set number
-set hidden
-set ignorecase
-syntax enable
-set backspace=indent,eol,start
+let mapleader = " "
 
-filetype plugin on
-
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
 augroup pythonFile
   autocmd FileType python nmap <leader>r :!wt -d . py "%"<CR><SPACE>
   autocmd FileType python setlocal tabstop=4
@@ -23,21 +9,9 @@ augroup pythonFile
   autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 augroup END
 
-set expandtab
-set autoindent smartindent
-set fileformat=unix
-set scrolloff=7
-set mouse=a
-"set clipboard+=unnamedplus
-set foldlevel=100
-
 set undofile
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
-
-set relativenumber
-
-nmap <C-j> :exe 'edit' stdpath('config').'/init.vim' <cr>
 
 if (has("termguicolors"))
   set termguicolors
@@ -71,8 +45,6 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'antoinemadec/coc-fzf'
 
-"Plug 'junegunn/rainbow_parentheses.vim'
-
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'Badhi/nvim-treesitter-cpp-tools'
@@ -81,6 +53,7 @@ Plug 'tpope/vim-surround'
 
 Plug 'derekwyatt/vim-fswitch'
 
+"Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'kien/rainbow_parentheses.vim'
 call plug#end()
 

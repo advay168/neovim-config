@@ -51,3 +51,5 @@ nmap("<Leader>v", [["+p]])
 
 nnoremap("<C-6>", "<C-^>")
 nnoremap("<esc>", ":noh<return><esc>")
+
+nmap("<C-j>", ":exe 'edit' stdpath('config').'/init.vim' <cr>")
