@@ -20,45 +20,33 @@ endif
 call plug#begin()
 
 "Plug 'joshdick/onedark.vim'
-
 Plug 'morhetz/gruvbox'
-
-"Plug 'jiangmiao/auto-pairs'
-
-Plug 'preservim/nerdcommenter'
-
-Plug 'preservim/nerdtree'
-
 Plug 'norcalli/nvim-colorizer.lua'
-
 Plug 'vim-airline/vim-airline'
-
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'honza/vim-snippets'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'junegunn/rainbow_parentheses.vim'
+"Plug 'kien/rainbow_parentheses.vim'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+"Plug 'honza/vim-snippets'
+"
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
 Plug 'junegunn/fzf.vim'
-
 Plug 'antoinemadec/coc-fzf'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
 Plug 'Badhi/nvim-treesitter-cpp-tools'
 
+Plug 'derekwyatt/vim-fswitch'
 Plug 'tpope/vim-surround'
 
-Plug 'derekwyatt/vim-fswitch'
-
-"Plug 'junegunn/rainbow_parentheses.vim'
-"Plug 'kien/rainbow_parentheses.vim'
 call plug#end()
 
 colorscheme gruvbox
-
 let g:airline_theme="gruvbox"
 
 nmap <silent> <Leader>oh :FSLeft<cr>
@@ -76,7 +64,6 @@ let g:NERDCommentEmptyLines = 1
 
 nmap <C-_> <plug>NERDCommenterToggle
 xmap <C-_> <plug>NERDCommenterToggle
-
 
 let NERDTreeQuitOnOpen=1
 
