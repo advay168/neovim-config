@@ -9,10 +9,6 @@ augroup pythonFile
   autocmd FileType python let b:coc_root_patterns = ['.git', '.env', 'venv', '.venv', 'setup.cfg', 'setup.py', 'pyproject.toml', 'pyrightconfig.json']
 augroup END
 
-set undofile
-set undolevels=1000         " How many undos
-set undoreload=10000        " number of lines to save for undo
-
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -50,9 +46,6 @@ call plug#end()
 colorscheme gruvbox
 let g:airline_theme="gruvbox"
 
-nmap <leader>df :TSCppDefineClassFunc<cr>
-xmap <leader>df :TSCppDefineClassFunc<cr>
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -61,10 +54,6 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-nnoremap <silent><leader>h :call CocActionAsync("doHover")<cr>
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -75,7 +64,7 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
-
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
@@ -87,7 +76,6 @@ function MirrorNerdTreeIfOneWindow()
   wincmd l
   endif
 endfunction
-
 autocmd TabEnter * silent exe MirrorNerdTreeIfOneWindow()
 
 lua require("init")

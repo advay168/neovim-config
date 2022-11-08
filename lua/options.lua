@@ -24,3 +24,7 @@ opt.smartindent = true
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 100
+
+opt.undofile = true
+opt.undolevels = 1000
+opt.undoreload = 10000
