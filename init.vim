@@ -40,6 +40,7 @@ Plug 'antoinemadec/coc-fzf'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'Badhi/nvim-treesitter-cpp-tools'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 Plug 'derekwyatt/vim-fswitch'
 Plug 'tpope/vim-surround'
@@ -49,55 +50,8 @@ call plug#end()
 colorscheme gruvbox
 let g:airline_theme="gruvbox"
 
-nmap <silent> <Leader>oh :FSLeft<cr>
-nmap <silent> <Leader>oH :FSSplitLeft<cr>
-nmap <silent> <Leader>ol :FSRight<cr>
-nmap <silent> <Leader>oL :FSSplitRight<cr>
-nmap <silent> <Leader>of :FSHere<cr>
-
-nmap <leader>b :Buffers<cr>
-
 nmap <leader>df :TSCppDefineClassFunc<cr>
 xmap <leader>df :TSCppDefineClassFunc<cr>
-
-let g:NERDCommentEmptyLines = 1
-
-nmap <C-_> <plug>NERDCommenterToggle
-xmap <C-_> <plug>NERDCommenterToggle
-
-let NERDTreeQuitOnOpen=1
-
-nmap <leader>ne :NERDTreeToggle<cr>
-
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
-
-nmap <leader>ac <Plug>(coc-codelens-action)
-
-nmap <leader>fc  <Plug>(coc-fix-current)
-nmap <leader>fi :CocFix<CR>
-nmap <leader>do :lopen<CR>
-nmap <leader>dc :lclose<CR>
-nmap <leader>dn <Plug>(coc-diagnostic-next)
-nmap <leader>dp <Plug>(coc-diagnostic-prev)
-
-let g:coc_snippet_next = '<tab>'
-let g:coc_snippet_prev = '<s-tab>'
-
-nmap <F2> <Plug>(coc-rename)
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-command! -nargs=0 Format :call CocAction('format')
-nmap <C-A-f> :Format<CR>
-
-nnoremap <C-p> :GFiles<CR>
-nnoremap <C-M-p> :Files<CR>
-
-
-command! -nargs=0 SetCWDasWS let b:coc_root_patterns="."
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -124,8 +78,6 @@ endfunction
 
 
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-let g:airline#extensions#tabline#enabled = 1
 
 function MirrorNerdTreeIfOneWindow()
   if winnr("$") < 2
