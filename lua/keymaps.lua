@@ -1,44 +1,44 @@
-local function map(type, input, output)
+function _G.map(type, input, output)
 	vim.api.nvim_set_keymap(type, input, output, {})
 end
 
-local function noremap(type, input, output)
+function _G.noremap(type, input, output)
 	vim.api.nvim_set_keymap(type, input, output, { noremap = true, silent = true })
 end
 
-local function remap(type, input, output)
+function _G.remap(type, input, output)
 	vim.api.nvim_set_keymap(type, input, output, { noremap = false, silent = true })
 end
 
-local function nnoremap(input, output)
+function _G.nnoremap(input, output)
 	noremap('n', input, output)
 end
 
-local function inoremap(input, output)
+function _G.inoremap(input, output)
 	noremap('i', input, output)
 end
 
-local function vnoremap(input, output)
+function _G.vnoremap(input, output)
 	noremap('v', input, output)
 end
 
-local function xnoremap(input, output)
+function _G.xnoremap(input, output)
 	noremap('x', input, output)
 end
 
-local function nmap(input, output)
+function _G.nmap(input, output)
 	remap('n', input, output)
 end
 
-local function imap(input, output)
+function _G.imap(input, output)
 	remap('i', input, output)
 end
 
-local function vmap(input, output)
+function _G.vmap(input, output)
 	remap('v', input, output)
 end
 
-local function xmap(input, output)
+function _G.xmap(input, output)
 	remap('x', input, output)
 end
 

@@ -41,6 +41,10 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'tpope/vim-surround'
 
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'mfussenegger/nvim-dap-python'
+
 call plug#end()
 
 colorscheme gruvbox
@@ -64,7 +68,7 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 

@@ -18,6 +18,7 @@
       ],
       "filetypes": ["hs", "lhs", "haskell"]
     }
-  }
+  },
+  "sumneko-lua.enableNvimLuaDev": true
 }
 
