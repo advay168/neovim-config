@@ -13,7 +13,7 @@ nnoremap("<C-p>", ":GFiles<CR>")
 nnoremap("<C-M-p>", ":Files<CR>")
 
 -- vim-airline/vim-airline
-vim.g["airline#extensions#tabline#enabled"] = 1
+--vim.g["airline#extensions#tabline#enabled"] = 1
 
 -- preservim/nerdcommenter
 vim.g.NERDCommentEmptyLines = 1
