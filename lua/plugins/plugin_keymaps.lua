@@ -20,13 +20,6 @@ vim.g.NERDCommentEmptyLines = 1
 nmap("<C-_>", "<Plug>NERDCommenterToggle")
 xmap("<C-_>", "<Plug>NERDCommenterToggle")
 
-vim.g.NERDTreeQuitOnOpen=1
-nmap("<leader>ne", ":NERDTreeToggle<CR>")
-
--- Badhi/nvim-treesitter-cpp-tools
-nmap("<leader>df", ":TSCppDefineClassFunc<cr>")
-xmap("<leader>df", ":TSCppDefineClassFunc<cr>")
-
 -- neoclide/coc.nvim
 nmap("<leader>gd", "<Plug>(coc-definition)")
 nmap("<leader>gy", "<Plug>(coc-type-definition)")

@@ -26,3 +26,6 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 }
+
+nmap("<leader>df", ":TSCppDefineClassFunc<cr>")
+xmap("<leader>df", ":TSCppDefineClassFunc<cr>")

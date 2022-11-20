@@ -3,7 +3,6 @@ _G.pprint = function (x)
 end
 
 require "colorizer".setup()
-require("tree-sitter")
 require("options")
 require("keymaps")
 require("plugins")

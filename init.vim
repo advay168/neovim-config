@@ -25,7 +25,10 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'kien/rainbow_parentheses.vim'
 Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
+"Plug 'preservim/nerdtree'
+
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'honza/vim-snippets'
@@ -45,7 +48,16 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mfussenegger/nvim-dap-python'
 
+" Has to be last
+"Plug 'ryanoasis/vim-devicons'
+
 call plug#end()
+
+
+let g:webdevicons_enable = 0
+if $WT " Manually set
+  let g:webdevicons_enable = 1
+endif
 
 colorscheme gruvbox
 let g:airline_theme="gruvbox"
@@ -83,3 +95,4 @@ endfunction
 autocmd TabEnter * silent exe MirrorNerdTreeIfOneWindow()
 
 lua require("init")
+" ./lua/init.lua
