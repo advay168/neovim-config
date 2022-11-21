@@ -1,5 +1,7 @@
 require("plugins.plugin_keymaps")
 require("plugins.nvim-tree")
 require("plugins.barbar")
+require("plugins.coc")
 require("plugins.tree-sitter")
+require("plugins.telescope")
 require("plugins.dap-common")

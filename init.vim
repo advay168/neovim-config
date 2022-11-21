@@ -21,6 +21,10 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
 "Plug 'jiangmiao/auto-pairs'
 "Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'kien/rainbow_parentheses.vim'
@@ -33,12 +37,14 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 
+Plug 'fannheyward/telescope-coc.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 "Plug 'honza/vim-snippets'
 "
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'antoinemadec/coc-fzf'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
+"Plug 'antoinemadec/coc-fzf'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'Badhi/nvim-treesitter-cpp-tools'
@@ -55,6 +61,7 @@ Plug 'mfussenegger/nvim-dap-python'
 "Plug 'ryanoasis/vim-devicons'
 
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
+
 
 call plug#end()
 
@@ -85,16 +92,6 @@ endfunction
 "nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function MirrorNerdTreeIfOneWindow()
-  if winnr("$") < 2
-  NERDTreeMirror
-  " hack to move the focus from the NERDTree to the main window
-  wincmd p
-  wincmd l
-  endif
-endfunction
-autocmd TabEnter * silent exe MirrorNerdTreeIfOneWindow()
 
 lua require("init")
 " ./lua/init.lua
