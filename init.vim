@@ -54,6 +54,8 @@ Plug 'mfussenegger/nvim-dap-python'
 " Has to be last
 "Plug 'ryanoasis/vim-devicons'
 
+Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
+
 call plug#end()
 
 
