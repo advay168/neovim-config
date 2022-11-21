@@ -27,8 +27,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdcommenter'
 "Plug 'preservim/nerdtree'
 
+"if $WT " Manually set
 Plug 'nvim-tree/nvim-web-devicons'
+"endif
 Plug 'nvim-tree/nvim-tree.lua'
+Plug 'romgrk/barbar.nvim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'honza/vim-snippets'
@@ -55,9 +58,6 @@ call plug#end()
 
 
 let g:webdevicons_enable = 0
-if $WT " Manually set
-  let g:webdevicons_enable = 1
-endif
 
 colorscheme gruvbox
 let g:airline_theme="gruvbox"

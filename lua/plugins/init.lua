@@ -1,4 +1,5 @@
 require("plugins.plugin_keymaps")
 require("plugins.nvim-tree")
+require("plugins.barbar")
 require("plugins.tree-sitter")
-require("plugins.dap")
+require("plugins.dap-common")

@@ -47,5 +47,4 @@ nmap("<C-A-f>", ":Format<CR>")
 
 vim.cmd "command! -nargs=0 SetCWDasWS let b:coc_root_patterns='.'"
 
-
 nnoremap("<leader>h", ":call CocActionAsync('doHover')<CR>")

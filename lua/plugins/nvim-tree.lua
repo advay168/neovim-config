@@ -12,6 +12,14 @@ require("nvim-tree").setup({
   },
   renderer = {
     group_empty = true,
+    icons = {
+      show = {
+        file = webdev_icons_enabled,
+        folder = webdev_icons_enabled,
+        folder_arrow = webdev_icons_enabled,
+        git = webdev_icons_enabled,
+      },
+    },
   },
   actions = {
     open_file = {
