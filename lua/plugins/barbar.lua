@@ -1,9 +1,17 @@
-require("bufferline").setup({
-  icons = webdev_icons_enabled
-})
+if (not webdev_icons_enabled) then
+  require("bufferline").setup({
+    icons = false,
+    icon_separator_active = "|",
+    icon_separator_inactive = "|",
+    icon_close_tab = "x"
+  })
+end
 
 nmap("<A-,>", ":BufferPrevious<CR>")
 nmap("<A-.>", ":BufferNext<CR>")
+
+nmap("<A-<>", ":BufferMovePrevious<CR>")
+nmap("<A->>", ":BufferMoveNext<CR>")
 
 nmap("<A-1>", ":BufferGoto 1<CR>")
 nmap("<A-2>", ":BufferGoto 2<CR>")
@@ -17,6 +25,7 @@ nmap("<A-9>", ":BufferGoto 9<CR>")
 nmap("<A-0>", ":BufferLast<CR>")
 
 nmap("<A-d>", ":BufferClose<CR>")
+nmap("<A-q>", ":BufferClose<CR>")
 nmap("<A-p>", ":BufferPick<CR>")
 
 local nvim_tree_events = require('nvim-tree.events')

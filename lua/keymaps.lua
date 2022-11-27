@@ -26,6 +26,10 @@ function _G.xnoremap(input, output)
 	noremap('x', input, output)
 end
 
+function _G.tnoremap(input, output)
+	noremap('t', input, output)
+end
+
 function _G.nmap(input, output)
 	remap('n', input, output)
 end
@@ -42,6 +46,10 @@ function _G.xmap(input, output)
 	remap('x', input, output)
 end
 
+function _G.tmap(input, output)
+	remap('t', input, output)
+end
+
 vim.g.mapleader = " "
 
 inoremap("jk", "<Esc>")
@@ -53,3 +61,7 @@ nnoremap("<C-6>", "<C-^>")
 nnoremap("<esc>", ":noh<return><esc>")
 
 nmap("<C-j>", ":exe 'edit' stdpath('config').'/init.vim' <cr>")
+
+tmap("<Esc><Esc>", [[<C-\><C-n>]])
+
+vim.cmd "cabbrev W w"

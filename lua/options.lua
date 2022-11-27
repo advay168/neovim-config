@@ -11,6 +11,7 @@ opt.smartcase = true
 opt.backspace = "indent,eol,start"
 opt.scrolloff = 7
 opt.mouse = "a"
+opt.matchpairs = opt.matchpairs + "<:>"
 
 -- opt.clipboard:append("unnamedplus")
 
