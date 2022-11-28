@@ -1,4 +1,5 @@
 {
+  "suggest.noselect": true,
   "codeLens.enable":true,
   "java.signatureHelp.enabled":true,
   "java.referencesCodeLens.enabled":true,

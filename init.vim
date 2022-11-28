@@ -21,7 +21,6 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
@@ -29,22 +28,15 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 "Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'kien/rainbow_parentheses.vim'
 Plug 'preservim/nerdcommenter'
-"Plug 'preservim/nerdtree'
 
-"if $WT " Manually set
 Plug 'nvim-tree/nvim-web-devicons'
-"endif
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 
 Plug 'fannheyward/telescope-coc.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-"Plug 'honza/vim-snippets'
-"
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
-"Plug 'antoinemadec/coc-fzf'
+Plug 'honza/vim-snippets'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'Badhi/nvim-treesitter-cpp-tools'
@@ -57,11 +49,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mfussenegger/nvim-dap-python'
 
-" Has to be last
-"Plug 'ryanoasis/vim-devicons'
-
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
-
 
 call plug#end()
 
@@ -71,14 +59,24 @@ let g:webdevicons_enable = 0
 colorscheme gruvbox
 let g:airline_theme="gruvbox"
 
+inoremap <silent><expr> <c-space> coc#refresh()
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
+"
+"inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
