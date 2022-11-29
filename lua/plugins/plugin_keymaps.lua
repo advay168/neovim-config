@@ -12,9 +12,6 @@ nmap("<leader>of", ":FSHere<CR>")
 --nnoremap("<C-p>", ":GFiles<CR>")
 --nnoremap("<C-M-p>", ":Files<CR>")
 
--- vim-airline/vim-airline
---vim.g["airline#extensions#tabline#enabled"] = 1
-
 -- preservim/nerdcommenter
 vim.g.NERDCommentEmptyLines = 1
 nmap("<C-_>", "<Plug>NERDCommenterToggle")

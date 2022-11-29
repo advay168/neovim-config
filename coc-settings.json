@@ -20,6 +20,7 @@
       "filetypes": ["hs", "lhs", "haskell"]
     }
   },
-  "sumneko-lua.enableNvimLuaDev": true
+  "sumneko-lua.enableNvimLuaDev": true,
+  "Lua.telemetry.enable": false
 }
 

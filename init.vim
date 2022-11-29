@@ -18,8 +18,8 @@ call plug#begin()
 "Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+
+Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
@@ -57,7 +57,6 @@ call plug#end()
 let g:webdevicons_enable = 0
 
 colorscheme gruvbox
-let g:airline_theme="gruvbox"
 
 inoremap <silent><expr> <c-space> coc#refresh()
 

@@ -1,4 +1,5 @@
 require("plugins.plugin_keymaps")
+require("plugins.lualine")
 require("plugins.nvim-tree")
 require("plugins.barbar")
 require("plugins.coc")
