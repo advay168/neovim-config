@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
   highlight = {
     enable = true,
   },
@@ -26,6 +26,8 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 }
+
+require'nvim-treesitter.configs'.init()
 
 nmap("<leader>df", ":TSCppDefineClassFunc<cr>")
 xmap("<leader>df", ":TSCppDefineClassFunc<cr>")

@@ -14,6 +14,7 @@ if (has("termguicolors"))
 endif
 
 call plug#begin()
+Plug 'lewis6991/impatient.nvim'
 
 "Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
@@ -52,7 +53,6 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 
 Plug 'nathom/filetype.nvim'
-Plug 'lewis6991/impatient.nvim'
 
 call plug#end()
 
