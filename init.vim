@@ -51,7 +51,12 @@ Plug 'mfussenegger/nvim-dap-python'
 
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 
+Plug 'nathom/filetype.nvim'
+Plug 'lewis6991/impatient.nvim'
+
 call plug#end()
+
+lua require("impatient")
 
 
 let g:webdevicons_enable = 0

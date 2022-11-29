@@ -1,4 +1,5 @@
 {
+  "inlayHint.display": false,
   "suggest.noselect": true,
   "codeLens.enable":true,
   "java.signatureHelp.enabled":true,
