@@ -26,6 +26,8 @@ nmap("<A-0>", ":BufferLast<CR>")
 
 nmap("<A-d>", ":BufferClose<CR>")
 nmap("<A-q>", ":BufferClose<CR>")
+nmap("<A-D>", ":BufferClose!<CR>")
+nmap("<A-Q>", ":BufferClose!<CR>")
 nmap("<A-p>", ":BufferPick<CR>")
 
 local nvim_tree_events = require('nvim-tree.events')

@@ -21,7 +21,7 @@ dapui.setup({
     },
     {
       elements = {
-        --{ id = "repl", size = 0.45 },
+        { id = "repl", size = 0.45 },
         --{ id = "console", size = 0.55 },
       },
       size = 0.25,

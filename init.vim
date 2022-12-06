@@ -15,51 +15,50 @@ endif
 
 call plug#begin()
 Plug 'lewis6991/impatient.nvim'
+Plug 'nathom/filetype.nvim'
+Plug 'nvim-lua/plenary.nvim'
 
-"Plug 'joshdick/onedark.vim'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
-Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'Badhi/nvim-treesitter-cpp-tools'
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'tpope/vim-surround'
+
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'romgrk/barbar.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+"Plug 'tjdevries/express_line.nvim'
+"Plug 'feline-nvim/feline.nvim'
+"Plug 'glepnir/galaxyline.nvim'
 
 "Plug 'jiangmiao/auto-pairs'
 "Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'kien/rainbow_parentheses.vim'
 Plug 'preservim/nerdcommenter'
 
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'nvim-tree/nvim-tree.lua'
-Plug 'romgrk/barbar.nvim'
-
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'fannheyward/telescope-coc.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'honza/vim-snippets'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'Badhi/nvim-treesitter-cpp-tools'
-Plug 'lukas-reineke/indent-blankline.nvim'
-
 Plug 'derekwyatt/vim-fswitch'
-Plug 'tpope/vim-surround'
 
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'mfussenegger/nvim-dap-python'
 
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
+Plug 'lukas-reineke/indent-blankline.nvim'
 
-Plug 'nathom/filetype.nvim'
+Plug 'dstein64/vim-startuptime' 
 
 call plug#end()
 
 lua require("impatient")
-
-
-let g:webdevicons_enable = 0
 
 colorscheme gruvbox
 
