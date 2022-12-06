@@ -6,3 +6,5 @@ require("plugins.coc")
 require("plugins.tree-sitter")
 require("plugins.telescope")
 require("plugins.dap-common")
+
+require("plugins.copilot")

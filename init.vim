@@ -56,6 +56,8 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 
 Plug 'dstein64/vim-startuptime' 
 
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 lua require("impatient")
