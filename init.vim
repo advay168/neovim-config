@@ -17,6 +17,7 @@ call plug#begin()
 Plug 'lewis6991/impatient.nvim'
 Plug 'nathom/filetype.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'antoinemadec/FixCursorHold.nvim'
 
 "Plug 'morhetz/gruvbox'
 Plug 'ellisonleao/gruvbox.nvim'
@@ -53,6 +54,9 @@ Plug 'mfussenegger/nvim-dap-python'
 
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 Plug 'lukas-reineke/indent-blankline.nvim'
+
+Plug 'tommcdo/vim-exchange'
+Plug 'mbbill/undotree'
 
 Plug 'dstein64/vim-startuptime' 
 
