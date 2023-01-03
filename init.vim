@@ -24,6 +24,8 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'commit': 'e2ee8fd7259389deaa898d1216fdc6846a26c627'}
 Plug 'Badhi/nvim-treesitter-cpp-tools'
 
 Plug 'tpope/vim-surround'
