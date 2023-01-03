@@ -58,6 +58,9 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'tommcdo/vim-exchange'
 Plug 'mbbill/undotree'
 
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+
+
 Plug 'dstein64/vim-startuptime' 
 
 Plug 'github/copilot.vim'
