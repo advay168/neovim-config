@@ -56,12 +56,18 @@ inoremap("jk", "<Esc>")
 xmap("<Leader>c", [["+y]])
 nmap("<Leader>v", [["+p]])
 
-
 nnoremap("<C-6>", "<C-^>")
 nnoremap("<esc>", ":noh<return><esc>")
 
-nmap("<C-j>", ":exe 'edit' stdpath('config').'/init.vim' <cr>")
+nnoremap("<C-h>", "<C-w>h")
+nnoremap("<C-j>", "<C-w>j")
+nnoremap("<C-k>", "<C-w>k")
+nnoremap("<C-l>", "<C-w>l")
 
-tmap("<Esc><Esc>", [[<C-\><C-n>]])
+nmap("<C-q>", ":exe 'edit' stdpath('config').'/init.vim'<cr>")
+nmap("<C-Q>", ":exe 'edit' stdpath('config').'/init.vim'<CR>:cd %:h<CR>")
 
-vim.cmd "cabbrev W w"
+tmap("<Esc>", [[<C-\><C-n>]])
+
+vim.cmd.cabbrev("W", "w")
+vim.cmd.cabbrev("Q", "q")

@@ -55,11 +55,11 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/nvim-cmp'
 
 Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
 
 Plug 'derekwyatt/vim-fswitch'
 
@@ -69,6 +69,7 @@ Plug 'mfussenegger/nvim-dap-python'
 
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'j-hui/fidget.nvim'
 
 Plug 'tommcdo/vim-exchange'
 Plug 'mbbill/undotree'

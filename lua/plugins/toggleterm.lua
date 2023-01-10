@@ -6,7 +6,10 @@ require("toggleterm").setup {
       return vim.o.columns * 0.4
     end
   end,
-  open_mapping = "<c-t>",
   insert_mappings = false,
   direction = "float",
 }
+
+nnoremap("<leader>tf", ":ToggleTerm direction=float<CR>")
+nnoremap("<leader>th", ":ToggleTerm direction=horizontal<CR>")
+nnoremap("<leader>tv", ":ToggleTerm direction=vertical<CR>")
