@@ -23,5 +23,6 @@ require("plugins.telescope")
 require("plugins.toggleterm")
 require("plugins.dap-common")
 require("plugins.lsp")
+require("plugins.null-ls")
 
 require("plugins.copilot")

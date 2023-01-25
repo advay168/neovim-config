@@ -50,6 +50,7 @@ Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'folke/neodev.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -75,7 +76,6 @@ Plug 'tommcdo/vim-exchange'
 Plug 'mbbill/undotree'
 
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
-
 
 Plug 'dstein64/vim-startuptime' 
 

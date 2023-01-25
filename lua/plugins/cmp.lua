@@ -21,7 +21,7 @@ cmp.setup({
     behavior = cmp.ConfirmBehavior.Replace,
   },
   window = {
-    completion = cmp.config.window.bordered(),
+    --completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
@@ -56,6 +56,7 @@ cmp.setup({
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
       { name = 'nvim_lsp_signature_help' },
+      { name = 'path' },
     },
     {
       { name = 'buffer' }
