@@ -43,7 +43,7 @@ Plug 'nvim-lualine/lualine.nvim'
 "Plug 'kien/rainbow_parentheses.vim'
 Plug 'preservim/nerdcommenter'
 
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'honza/vim-snippets'
 
 Plug 'williamboman/mason.nvim'

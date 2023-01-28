@@ -71,3 +71,5 @@ tmap("<Esc>", [[<C-\><C-n>]])
 
 vim.cmd.cabbrev("W", "w")
 vim.cmd.cabbrev("Q", "q")
+vim.cmd.cabbrev("Qa", "qa")
+vim.cmd.cabbrev("QA", "qa")
