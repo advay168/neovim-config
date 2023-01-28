@@ -98,4 +98,8 @@ cmp.setup.cmdline(':', {
   })
 })
 
+luasnip.config.set_config({
+  store_selection_keys = '<c-s>',
+})
+
 require("luasnip.loaders.from_snipmate").lazy_load()

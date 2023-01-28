@@ -28,4 +28,4 @@ require("plugins.dap-common")
 require("plugins.lsp")
 require("plugins.null-ls")
 
-require("plugins.copilot")
+--require("plugins.copilot")

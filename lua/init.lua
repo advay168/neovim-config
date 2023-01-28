@@ -3,7 +3,6 @@ _G.pprint = function (x)
 end
 
 _G.webdev_icons_enabled = os.getenv("wt") == "1"
---require "colorizer".setup()
 require("options")
 require("keymaps")
 require("plugins")
