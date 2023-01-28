@@ -21,7 +21,7 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 
 "Plug 'morhetz/gruvbox'
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'norcalli/nvim-colorizer.lua'
+"Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'

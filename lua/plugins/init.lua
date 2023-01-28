@@ -12,6 +12,9 @@ vim.g.NERDCommentEmptyLines = 1
 nmap("<C-_>", "<Plug>NERDCommenterToggle")
 xmap("<C-_>", "<Plug>NERDCommenterToggle")
 
+-- mbbill/undotree
+nmap("<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>")
+
 require("fidget").setup()
 
 require("plugins.gruvbox")

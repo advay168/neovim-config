@@ -9,7 +9,7 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gd', ":Telescope lsp_definitions<CR>", bufopts)
   vim.keymap.set('n', 'gr', ":Telescope lsp_references<CR>", bufopts)
@@ -26,6 +26,11 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+  if client.resolved_capabilities.code_lens then
+    vim.cmd[[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
+    vim.keymap.set('n', '<space>cl', vim.lsp.codelens.run, bufopts)
+  end
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
