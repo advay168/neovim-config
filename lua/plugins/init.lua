@@ -1,11 +1,11 @@
 vim.g.mapleader = " "
 
 -- derekwyatt/vim-fswitch
-nmap("<leader>oh", ":FSLeft<CR>")
-nmap("<leader>oH", ":FSSplitLeft<CR>")
-nmap("<leader>ol", ":FSRight<CR>")
-nmap("<leader>oL", ":FSSplitRight<CR>")
-nmap("<leader>of", ":FSHere<CR>")
+--nmap("<leader>oh", ":FSLeft<CR>")
+--nmap("<leader>oH", ":FSSplitLeft<CR>")
+--nmap("<leader>ol", ":FSRight<CR>")
+--nmap("<leader>oL", ":FSSplitRight<CR>")
+--nmap("<leader>of", ":FSHere<CR>")
 
 -- preservim/nerdcommenter
 vim.g.NERDCommentEmptyLines = 1

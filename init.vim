@@ -18,6 +18,8 @@ Plug 'nathom/filetype.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'antoinemadec/FixCursorHold.nvim'
 
+"Plug 'jiangmiao/auto-pairs'
+
 Plug 'ellisonleao/gruvbox.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdateSync'}
@@ -60,7 +62,7 @@ Plug 'hrsh7th/nvim-cmp'
 
 Plug 'L3MON4D3/LuaSnip'
 
-Plug 'derekwyatt/vim-fswitch'
+"Plug 'derekwyatt/vim-fswitch'
 
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
