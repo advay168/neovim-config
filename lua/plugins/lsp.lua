@@ -27,26 +27,54 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 
-  if client.resolved_capabilities.code_lens then
-    vim.cmd[[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
+  if client.server_capabilities.codeLensProvider then
+    vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
     vim.keymap.set('n', '<space>cl', vim.lsp.codelens.run, bufopts)
   end
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require("mason-lspconfig").setup_handlers {
-  function(server_name)
-    require("lspconfig")[server_name].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
+require 'lspconfig'.clangd.setup {
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    vim.keymap.set("", "<leader>o", ":ClangdSwitchSourceHeader<CR>")
   end,
+  capabilities = capabilities,
 }
 
 require 'lspconfig'.hls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
+
+require 'lspconfig'.pyright.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+require 'lspconfig'.tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+require 'lspconfig'.lua_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+require 'lspconfig'.emmet_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+--require("mason-lspconfig").setup_handlers {
+--function(server_name)
+--require("lspconfig")[server_name].setup {
+--on_attach = on_attach,
+--capabilities = capabilities,
+--}
+--end,
+--}
 
 require("plugins.cmp")
