@@ -1,6 +1,6 @@
 local dap = require('dap')
 
-vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
 require("plugins.dap-keymaps")
 
 require("plugins.dap-python")
@@ -11,10 +11,10 @@ dapui.setup({
   layouts = {
     {
       elements = {
-        { id = "stacks", size = 0.29 },
-        { id = "scopes", size = 0.30 },
+        { id = "stacks",      size = 0.29 },
+        { id = "scopes",      size = 0.30 },
         { id = "breakpoints", size = 0.16 },
-        { id = "watches", size = 0.25 },
+        { id = "watches",     size = 0.25 },
       },
       size = 0.33,
       position = "right",
@@ -34,8 +34,9 @@ dapui.setup({
     mappings = {
       close = { "q", "<Esc>" },
     },
-  }}
-  )
+  }
+}
+)
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()

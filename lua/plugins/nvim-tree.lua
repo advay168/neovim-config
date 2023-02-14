@@ -27,7 +27,7 @@ require("nvim-tree").setup({
     }
   },
   --update_focused_file = {
-    --enable = true,
+  --enable = true,
   --},
   filters = {
     dotfiles = true,
@@ -36,5 +36,23 @@ require("nvim-tree").setup({
     enable = false,
   },
 })
+
+local function open_nvim_tree(data)
+  local is_a_directory = vim.fn.isdirectory(data.file) == 1
+
+  if is_a_directory then
+    vim.cmd.cd(data.file)
+    require("nvim-tree.api").tree.open()
+    return
+  end
+
+  --local is_real_file = vim.fn.filereadable(data.file) == 1
+  --local is_no_name_file = data.file == "" and vim.bo[data.buf].buftype == ""
+  --if is_real_file or is_no_name_file then
+  --require("nvim-tree.api").tree.toggle { focus = false, find_file = true }
+  --return
+  --end
+end
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 nmap("<leader>ne", ":NvimTreeToggle<CR>")

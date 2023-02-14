@@ -1,6 +1,158 @@
-_G.pprint = function (x)
-  print(vim.inspect(x))
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+--[[
+if not vim.loop.fs_stat(lazypath) then
+vim.fn.system({
+"git",
+"clone",
+"--filter=blob:none",
+"https://github.com/folke/lazy.nvim.git",
+"--branch=stable", -- latest stable release
+lazypath,
+})
 end
+]]
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  {
+    'nathom/filetype.nvim'
+  },
+  {
+    'nvim-lua/plenary.nvim'
+  },
+  {
+    'antoinemadec/FixCursorHold.nvim'
+  },
+  {
+    'ellisonleao/gruvbox.nvim'
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdateSync',
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-context'
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
+  {
+    'Badhi/nvim-treesitter-cpp-tools'
+  },
+  {
+    'tpope/vim-surround'
+  },
+  {
+    'nvim-tree/nvim-web-devicons'
+  },
+  {
+    'nvim-tree/nvim-tree.lua',
+  },
+  {
+    'romgrk/barbar.nvim'
+  },
+  {
+    'nvim-lualine/lualine.nvim'
+  },
+  --{
+  --'jiangmiao/auto-pairs'
+  --},
+  --{
+  --'junegunn/rainbow_parentheses.vim'
+  --},
+  --{
+  --'kien/rainbow_parentheses.vim'
+  --},
+  {
+    'preservim/nerdcommenter'
+  },
+  {
+    'nvim-telescope/telescope.nvim',
+    version = '0.1.1',
+  },
+  {
+    'honza/vim-snippets'
+  },
+  {
+    'j-hui/fidget.nvim'
+  },
+  {
+    'williamboman/mason.nvim'
+  },
+  {
+    'williamboman/mason-lspconfig.nvim'
+  },
+  {
+    'neovim/nvim-lspconfig'
+  },
+  {
+    'folke/neodev.nvim'
+  },
+  {
+    'folke/neoconf.nvim'
+  },
+  {
+    'jose-elias-alvarez/null-ls.nvim'
+  },
+  {
+    'hrsh7th/cmp-nvim-lsp'
+  },
+  {
+    'hrsh7th/cmp-buffer'
+  },
+  {
+    'hrsh7th/cmp-path'
+  },
+  {
+    'hrsh7th/cmp-cmdline'
+  },
+  {
+    'hrsh7th/cmp-nvim-lsp-signature-help'
+  },
+  {
+    'saadparwaiz1/cmp_luasnip'
+  },
+  {
+    'hrsh7th/nvim-cmp'
+  },
+  {
+    'L3MON4D3/LuaSnip'
+  },
+  {
+    'mfussenegger/nvim-dap'
+  },
+  {
+    'rcarriga/nvim-dap-ui',
+    commit = "f2206de65ea39093e3f13992507fc985c17aa763" -- Some bug of opening multiple buffers on startup
+  },
+  {
+    'mfussenegger/nvim-dap-python'
+  },
+  {
+    'dstein64/nvim-scrollview',
+  },
+  {
+    'lukas-reineke/indent-blankline.nvim'
+  },
+  {
+    'tommcdo/vim-exchange'
+  },
+  {
+    'mbbill/undotree'
+  },
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+  },
+  {
+    'dstein64/vim-startuptime'
+  },
+  --{
+  --'github/copilot.vim'
+  --},
+})
+
+vim.cmd.colorscheme("gruvbox")
 
 _G.webdev_icons_enabled = os.getenv("wt") == "1"
 require("options")

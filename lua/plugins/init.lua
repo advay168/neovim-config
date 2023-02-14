@@ -18,7 +18,7 @@ nmap("<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>")
 require("fidget").setup()
 
 require("plugins.gruvbox")
-require("plugins.lualine")
+--require("plugins.lualine")
 require("plugins.nvim-tree")
 require("plugins.barbar")
 require("plugins.tree-sitter")

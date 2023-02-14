@@ -1,7 +1,11 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
 
-require("neodev").setup({})
+require("neodev").setup({
+  library = {
+    plugins = { "nvim-dap-ui" },
+  },
+})
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
