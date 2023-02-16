@@ -1,7 +1,14 @@
-_G.webdev_icons_enabled = os.getenv("wt") == "1"
 vim.g.mapleader = " "
 require("options")
 require("keymaps")
+
+vim.cmd [[
+  augroup pythonFile
+    autocmd FileType python setlocal tabstop=4
+    autocmd FileType python setlocal softtabstop=4
+    autocmd FileType python setlocal shiftwidth=4
+  augroup END
+]]
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 --[[
@@ -18,6 +25,7 @@ end
 ]]
 vim.opt.rtp:prepend(lazypath)
 
+_G.webdev_icons_enabled = os.getenv("wt") == "1"
 require("lazy").setup(
   {
     'nathom/filetype.nvim',

@@ -1,5 +1,9 @@
 local opt = vim.opt
 
+if vim.fn.has("termguicolors") then
+  opt.termguicolors = true
+end
+
 opt.encoding = "utf-8"
 opt.fileformats = "unix,dos"
 opt.fileformat = "unix"
