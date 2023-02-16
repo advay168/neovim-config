@@ -1,3 +1,8 @@
+_G.webdev_icons_enabled = os.getenv("wt") == "1"
+vim.g.mapleader = " "
+require("options")
+require("keymaps")
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 --[[
 if not vim.loop.fs_stat(lazypath) then
@@ -13,148 +18,679 @@ end
 ]]
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+require("lazy").setup(
   {
-    'nathom/filetype.nvim'
-  },
-  {
-    'nvim-lua/plenary.nvim'
-  },
-  {
-    'antoinemadec/FixCursorHold.nvim'
-  },
-  {
-    'ellisonleao/gruvbox.nvim'
-  },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdateSync',
-  },
-  {
-    'nvim-treesitter/nvim-treesitter-context'
-  },
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
-  {
-    'Badhi/nvim-treesitter-cpp-tools'
-  },
-  {
-    'tpope/vim-surround'
-  },
-  {
-    'nvim-tree/nvim-web-devicons'
-  },
-  {
-    'nvim-tree/nvim-tree.lua',
-  },
-  {
-    'romgrk/barbar.nvim'
-  },
-  {
-    'nvim-lualine/lualine.nvim'
-  },
-  --{
-  --'jiangmiao/auto-pairs'
-  --},
-  --{
-  --'junegunn/rainbow_parentheses.vim'
-  --},
-  --{
-  --'kien/rainbow_parentheses.vim'
-  --},
-  {
-    'preservim/nerdcommenter'
-  },
-  {
-    'nvim-telescope/telescope.nvim',
-    version = '0.1.1',
-  },
-  {
-    'honza/vim-snippets'
-  },
-  {
-    'j-hui/fidget.nvim'
-  },
-  {
-    'williamboman/mason.nvim'
-  },
-  {
-    'williamboman/mason-lspconfig.nvim'
-  },
-  {
-    'neovim/nvim-lspconfig'
-  },
-  {
-    'folke/neodev.nvim'
-  },
-  {
-    'folke/neoconf.nvim'
-  },
-  {
-    'jose-elias-alvarez/null-ls.nvim'
-  },
-  {
-    'hrsh7th/cmp-nvim-lsp'
-  },
-  {
-    'hrsh7th/cmp-buffer'
-  },
-  {
-    'hrsh7th/cmp-path'
-  },
-  {
-    'hrsh7th/cmp-cmdline'
-  },
-  {
-    'hrsh7th/cmp-nvim-lsp-signature-help'
-  },
-  {
-    'saadparwaiz1/cmp_luasnip'
-  },
-  {
-    'hrsh7th/nvim-cmp'
-  },
-  {
-    'L3MON4D3/LuaSnip'
-  },
-  {
-    'mfussenegger/nvim-dap'
-  },
-  {
-    'rcarriga/nvim-dap-ui',
-    commit = "f2206de65ea39093e3f13992507fc985c17aa763" -- Some bug of opening multiple buffers on startup
-  },
-  {
-    'mfussenegger/nvim-dap-python'
-  },
-  {
+    'nathom/filetype.nvim',
+    'nvim-lua/plenary.nvim',
+    'antoinemadec/FixCursorHold.nvim',
+    'tpope/vim-repeat',
+    'tpope/vim-surround',
+    'tommcdo/vim-exchange',
+    'lukas-reineke/indent-blankline.nvim',
     'dstein64/nvim-scrollview',
-  },
-  {
-    'lukas-reineke/indent-blankline.nvim'
-  },
-  {
-    'tommcdo/vim-exchange'
-  },
-  {
-    'mbbill/undotree'
-  },
-  {
-    'akinsho/toggleterm.nvim',
-    version = '*',
-  },
-  {
-    'dstein64/vim-startuptime'
-  },
-  --{
-  --'github/copilot.vim'
-  --},
-})
 
-vim.cmd.colorscheme("gruvbox")
+    {
+      'ellisonleao/gruvbox.nvim',
+      config = function(_, _)
+        require("gruvbox").setup({
+          italic = false,
+          dim_inactive = true,
+        })
+        vim.cmd [[colorscheme gruvbox]]
+      end,
+      priority = 1000
+    },
 
-_G.webdev_icons_enabled = os.getenv("wt") == "1"
-require("options")
-require("keymaps")
-require("plugins")
+    {
+      'dstein64/vim-startuptime',
+      cmd = "StartupTime"
+    },
+    {
+      'nvim-treesitter/nvim-treesitter-context',
+      dependencies = { "nvim-treesitter" },
+      config = true
+    },
+    {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      dependencies = { "nvim-treesitter" },
+      opts = {
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ['aa'] = '@parameter.outer',
+              ['ia'] = '@parameter.inner',
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              ['ic'] = '@class.inner',
+            },
+          },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              [']m'] = '@function.outer',
+              [']]'] = '@class.outer',
+            },
+            goto_next_end = {
+              [']M'] = '@function.outer',
+              [']['] = '@class.outer',
+            },
+            goto_previous_start = {
+              ['[m'] = '@function.outer',
+              ['[['] = '@class.outer',
+            },
+            goto_previous_end = {
+              ['[M'] = '@function.outer',
+              ['[]'] = '@class.outer',
+            },
+          },
+          swap = {
+            enable = true,
+            swap_next = {
+              ['<leader>a'] = '@parameter.inner',
+            },
+            swap_previous = {
+              ['<leader>A'] = '@parameter.inner',
+            },
+          },
+        }
+      },
+      config = function(_, opts)
+        require 'nvim-treesitter.configs'.setup(opts)
+      end
+    },
+    {
+      'Badhi/nvim-treesitter-cpp-tools',
+      ft = { "cpp", "cxx", "h", "hpp" },
+      dependencies = { "nvim-treesitter" },
+      config = function(_, _)
+        require 'nvim-treesitter.configs'.setup {
+          nt_cpp_tools = {
+            enable = true,
+            preview = {
+              quit = 'q',
+              accept = '<tab>'
+            },
+            header_extension = 'h',
+            source_extension = 'cxx',
+            custom_define_class_function_commands = { -- optional
+              TSCppImplWrite = {
+                output_handle = require 'nvim-treesitter.nt-cpp-tools.output_handlers'.get_add_to_cpp()
+              }
+            }
+          }
+        }
+        nmap("<leader>df", ":TSCppDefineClassFunc<cr>")
+        xmap("<leader>df", ":TSCppDefineClassFunc<cr>")
+      end
+    },
+    {
+      'nvim-treesitter/nvim-treesitter',
+      build = ':TSUpdateSync',
+      opts = {
+        --ensure_installed = "all",
+        highlight = {
+          enable = true,
+        }
+      },
+      config = function(_, opts)
+        require 'nvim-treesitter.configs'.setup(opts)
+      end
+    },
+
+    {
+      'mbbill/undotree',
+      keys = {
+        { "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>" }
+      }
+    },
+    {
+      'nvim-tree/nvim-tree.lua',
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function(_, _)
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+        require("nvim-tree").setup({
+          sort_by = "case_sensitive",
+          view = {
+            adaptive_size = true,
+            mappings = {
+              list = {
+                { key = "u", action = "dir_up" },
+              },
+            },
+          },
+          renderer = {
+            group_empty = true,
+            icons = {
+              show = {
+                file = webdev_icons_enabled,
+                folder = webdev_icons_enabled,
+                folder_arrow = webdev_icons_enabled,
+                git = webdev_icons_enabled,
+              },
+            },
+          },
+          actions = {
+            open_file = {
+              quit_on_open = true,
+            }
+          },
+          --update_focused_file = {
+          --enable = true,
+          --},
+          filters = {
+            dotfiles = true,
+          },
+          filesystem_watchers = {
+            enable = false,
+          },
+        })
+
+        local function open_nvim_tree(data)
+          local is_a_directory = vim.fn.isdirectory(data.file) == 1
+
+          if is_a_directory then
+            vim.cmd.cd(data.file)
+            require("nvim-tree.api").tree.open()
+            return
+          end
+
+          --local is_real_file = vim.fn.filereadable(data.file) == 1
+          --local is_no_name_file = data.file == "" and vim.bo[data.buf].buftype == ""
+          --if is_real_file or is_no_name_file then
+          --require("nvim-tree.api").tree.toggle { focus = false, find_file = true }
+          --return
+          --end
+        end
+        vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+
+        nmap("<leader>ne", ":NvimTreeToggle<CR>")
+      end
+    },
+    {
+      'romgrk/barbar.nvim',
+      dependencies = { "nvim-web-devicons" },
+      config = function(_, _)
+        if (not webdev_icons_enabled) then
+          require("bufferline").setup({
+            icons = false,
+            icon_separator_active = "|",
+            icon_separator_inactive = "|",
+            icon_close_tab = "x"
+          })
+        end
+
+        nmap("<A-,>", ":BufferPrevious<CR>")
+        nmap("<A-.>", ":BufferNext<CR>")
+
+        nmap("<A-<>", ":BufferMovePrevious<CR>")
+        nmap("<A->>", ":BufferMoveNext<CR>")
+
+        nmap("<A-1>", ":BufferGoto 1<CR>")
+        nmap("<A-2>", ":BufferGoto 2<CR>")
+        nmap("<A-3>", ":BufferGoto 3<CR>")
+        nmap("<A-4>", ":BufferGoto 4<CR>")
+        nmap("<A-5>", ":BufferGoto 5<CR>")
+        nmap("<A-6>", ":BufferGoto 6<CR>")
+        nmap("<A-7>", ":BufferGoto 7<CR>")
+        nmap("<A-8>", ":BufferGoto 8<CR>")
+        nmap("<A-9>", ":BufferGoto 9<CR>")
+        nmap("<A-0>", ":BufferLast<CR>")
+
+        nmap("<A-d>", ":BufferClose<CR>")
+        nmap("<A-q>", ":BufferClose<CR>")
+        nmap("<A-D>", ":BufferClose!<CR>")
+        nmap("<A-Q>", ":BufferClose!<CR>")
+        nmap("<A-p>", ":BufferPick<CR>")
+
+        local nvim_tree_events = require('nvim-tree.events')
+        local bufferline_api = require('bufferline.api')
+
+        local function get_tree_size()
+          return require 'nvim-tree.view'.View.width
+        end
+
+        nvim_tree_events.subscribe('TreeOpen', function()
+          bufferline_api.set_offset(get_tree_size())
+        end)
+
+        nvim_tree_events.subscribe('Resize', function()
+          bufferline_api.set_offset(get_tree_size())
+        end)
+
+        nvim_tree_events.subscribe('TreeClose', function()
+          bufferline_api.set_offset(0)
+        end)
+      end
+    },
+    {
+      'nvim-lualine/lualine.nvim',
+      enabled = false,
+      config = function(_, _)
+        local opts = {
+          options = {
+            theme = "gruvbox",
+          },
+        }
+        if (not webdev_icons_enabled) then
+          opts.options.section_separators = ''
+          opts.options.component_separators = ''
+          opts.options.icons_enabled = false
+        end
+
+        require("lualine").setup(opts)
+      end
+    },
+    --'jiangmiao/auto-pairs' ,
+    --'junegunn/rainbow_parentheses.vim' ,
+    --'kien/rainbow_parentheses.vim' ,
+    {
+      'preservim/nerdcommenter',
+      config = function(_, _)
+        vim.g.NERDCommentEmptyLines = 1
+        vim.g.NERDDefaultAlign = 'left'
+
+        nmap("<C-_>", "<Plug>NERDCommenterToggle")
+        xmap("<C-_>", "<Plug>NERDCommenterToggle")
+      end
+    },
+    {
+      'nvim-telescope/telescope.nvim',
+      version = '0.1.1',
+      config = function(_, _)
+        require('telescope').setup {}
+
+        local builtin = require('telescope.builtin')
+        vim.keymap.set('n', '<space>b', builtin.buffers, { noremap = true })
+        vim.keymap.set('n', '<C-p>', builtin.find_files, { noremap = true })
+        vim.keymap.set('n', '<C-f>', builtin.live_grep, { noremap = true })
+        vim.keymap.set('n', '<space>tt', builtin.builtin, { noremap = true })
+      end
+    },
+
+    {
+      'j-hui/fidget.nvim',
+      config = true
+    },
+
+    {
+      'williamboman/mason-lspconfig.nvim',
+      dependencies = {
+        'williamboman/mason.nvim',
+      },
+      config = function(_, _)
+        require("mason").setup()
+        require("mason-lspconfig").setup()
+      end
+    },
+
+    {
+      'neovim/nvim-lspconfig',
+      dependencies = {
+        'williamboman/mason-lspconfig.nvim',
+        'folke/neodev.nvim',
+        'folke/neoconf.nvim',
+      },
+      config = function(_, _)
+        require("neodev").setup({
+          library = {
+            plugins = { "lazy.nvim" },
+          },
+        })
+
+        local opts = { noremap = true, silent = true }
+        vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+        vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
+        local on_attach = function(client, bufnr)
+          local bufopts = { noremap = true, silent = true, buffer = bufnr }
+          vim.keymap.set('n', 'gd', ":Telescope lsp_definitions<CR>", bufopts)
+          vim.keymap.set('n', 'gr', ":Telescope lsp_references<CR>", bufopts)
+          vim.keymap.set('n', 'gi', ":Telescope lsp_implementations<CR>", bufopts)
+          vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+          vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+          vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+          vim.keymap.set('n', '<space>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          end, bufopts)
+          vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+          vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+          vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+          vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+          if client.server_capabilities.codeLensProvider then
+            vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
+            vim.keymap.set('n', '<space>cl', vim.lsp.codelens.run, bufopts)
+          end
+        end
+
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+        require 'lspconfig'.clangd.setup {
+          on_attach = function(client, bufnr)
+            on_attach(client, bufnr)
+            vim.keymap.set("", "<leader>o", ":ClangdSwitchSourceHeader<CR>")
+          end,
+          capabilities = capabilities,
+        }
+
+        require 'lspconfig'.hls.setup {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
+
+        require 'lspconfig'.pyright.setup {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
+
+        require 'lspconfig'.lua_ls.setup {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
+
+        -- Commented out html plugins because of limited use currently
+        --[[
+            require 'lspconfig'.tsserver.setup {
+              on_attach = on_attach,
+              capabilities = capabilities,
+            }
+
+            require 'lspconfig'.emmet_ls.setup {
+              on_attach = on_attach,
+              capabilities = capabilities,
+            }
+        --]]
+      end
+    },
+    {
+      'jose-elias-alvarez/null-ls.nvim',
+      dependencies = {
+        'neovim/nvim-lspconfig'
+      },
+      ft = "py",
+      config = function(_, _)
+        local null_ls = require("null-ls")
+        null_ls.setup({
+          sources = {
+            null_ls.builtins.formatting.black,
+          }
+        })
+      end
+    },
+
+    {
+      'hrsh7th/nvim-cmp',
+      lazy = true,
+      dependencies = {
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-cmdline',
+        'hrsh7th/cmp-nvim-lsp-signature-help',
+        'saadparwaiz1/cmp_luasnip',
+        {
+          "L3MON4D3/LuaSnip",
+          dependencies = { "honza/vim-snippets" },
+        },
+      },
+      config = function(_, _)
+        vim.cmd [[set completeopt=menu,menuone,noselect]]
+
+        local has_words_before = function()
+          local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+          return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+        end
+
+
+        local cmp = require('cmp')
+        local luasnip = require("luasnip")
+        cmp.setup({
+          enabled = function()
+            if vim.bo.buftype == 'prompt' then
+              return false
+            end
+            -- disable completion in comments
+            local context = require 'cmp.config.context'
+            if vim.api.nvim_get_mode().mode == 'c' then
+              return true
+            else
+              return not context.in_treesitter_capture("comment")
+                  and not context.in_syntax_group("Comment")
+            end
+          end,
+          snippet = {
+            expand = function(args)
+              require('luasnip').lsp_expand(args.body)
+            end,
+          },
+          experimental = {
+            ghost_text = true,
+          },
+          confirm_opts = {
+            behavior = cmp.ConfirmBehavior.Replace,
+          },
+          window = {
+            --completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
+          },
+          mapping = cmp.mapping.preset.insert({
+            ["<Tab>"] = cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item()
+              elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+              elseif has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
+            end, { "i", "s" }),
+            ["<S-Tab>"] = cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_prev_item()
+              elseif luasnip.jumpable( -1) then
+                luasnip.jump( -1)
+              else
+                fallback()
+              end
+            end, { "i", "s" }),
+            ['<C-b>'] = cmp.mapping.scroll_docs( -4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.abort(),
+            ['<CR>'] = cmp.mapping.confirm({ select = false }),
+          }),
+          sources = cmp.config.sources(
+            {
+              { name = 'nvim_lsp' },
+              { name = 'luasnip' },
+              { name = 'nvim_lsp_signature_help' },
+              { name = 'path' },
+            },
+            {
+              { name = 'buffer' }
+            }
+          )
+        })
+
+        cmp.setup.filetype('gitcommit', {
+          sources = cmp.config.sources({
+            { name = 'cmp_git' },
+          }, {
+            { name = 'buffer' },
+          })
+        })
+
+        cmp.setup.cmdline({ '/', '?' }, {
+          mapping = cmp.mapping.preset.cmdline(),
+          sources = {
+            { name = 'buffer' }
+          }
+        })
+
+        cmp.setup.cmdline(':', {
+          mapping = cmp.mapping.preset.cmdline(),
+          sources = cmp.config.sources({
+            { name = 'path' }
+          }, {
+            { name = 'cmdline' }
+          })
+        })
+
+        luasnip.config.set_config({
+          store_selection_keys = '<c-s>',
+        })
+        require("luasnip.loaders.from_snipmate").lazy_load()
+      end
+    },
+
+    {
+      'mfussenegger/nvim-dap',
+      dependencies = {
+        'mfussenegger/nvim-dap-python',
+      },
+      keys = {
+        { "<leader>db", function() require 'dap'.toggle_breakpoint() end },
+        { "<leader>dc", function() require 'dap'.run_to_cursor() end },
+        { "<F6>",       function() require 'dap'.step_into() end },
+        { "<F5>",       function() require 'dap'.continue() end },
+        { "<F4>",       function() require 'dap'.step_out() end },
+        { "<F3>",       function() require 'dap'.step_over() end },
+        { "<leader>dh", function() require 'dap'.pause() end },
+        { "<leader>dr", function() require 'dapui'.float_element('repl') end },
+        { "<leader>dl", function() require 'dap'.run_last() end },
+        { "<leader>dq", function() require 'dap'.close() end },
+        { "<leader>dd", function() require 'dapui'.toggle() end },
+      },
+      config = function(_, _)
+        vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+
+        local dap_py = require("dap-python")
+        dap_py.setup("D:/dev/nvim-dap-data/debugpy.venv/Scripts/pythonw.exe")
+
+        local dap = require('dap')
+        for _, conf in ipairs(dap.configurations.python) do
+          conf.justMyCode = false
+          conf.redirectOutput = true
+          conf.showReturnValue = true
+        end
+
+        dap.adapters.codelldb = {
+          type = 'server',
+          port = "${port}",
+          executable = {
+            command = 'D:/dev/nvim-dap-data/codelldb/extension/adapter/codelldb.exe',
+            args = { "--port", "${port}" },
+
+            -- On windows you may have to uncomment this:
+            -- detached = false,
+          }
+        }
+
+        dap.configurations.cpp = {
+          {
+            name = "Launch file",
+            type = "codelldb",
+            request = "launch",
+            program = function()
+              return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            end,
+            cwd = '${workspaceFolder}',
+          },
+        }
+      end
+    },
+    {
+      'rcarriga/nvim-dap-ui',
+      commit = "f2206de65ea39093e3f13992507fc985c17aa763", -- Some bug of opening multiple buffers on startup
+      dependencies = { 'mfussenegger/nvim-dap' },
+      config = function(_, _)
+        local dap = require('dap')
+        local dapui = require("dapui")
+        dapui.setup({
+          layouts = {
+            {
+              elements = {
+                { id = "stacks",      size = 0.29 },
+                { id = "scopes",      size = 0.30 },
+                { id = "breakpoints", size = 0.16 },
+                { id = "watches",     size = 0.25 },
+              },
+              size = 0.33,
+              position = "right",
+            },
+            {
+              elements = {
+                { id = "repl", size = 0.45 },
+                --{ id = "console", size = 0.55 },
+              },
+              size = 0.25,
+              position = "bottom",
+            },
+          },
+          floating = {
+            max_width = 0.5, -- Floats will be treated as percentage of your screen.
+            border = "rounded", -- Border style. Can be 'single', 'double' or 'rounded'
+            mappings = {
+              close = { "q", "<Esc>" },
+            },
+          }
+        }
+        )
+
+        dap.listeners.after.event_initialized["dapui_config"] = dapui.open
+        dap.listeners.before.event_terminated["dapui_config"] = dapui.close
+        dap.listeners.before.event_exited["dapui_config"] = dapui.close
+      end
+    },
+    {
+      'akinsho/toggleterm.nvim',
+      version = '*',
+      config = function(_, _)
+        require("toggleterm").setup {
+          size = function(term)
+            if term.direction == "horizontal" then
+              return 15
+            elseif term.direction == "vertical" then
+              return vim.o.columns * 0.4
+            end
+          end,
+          insert_mappings = false,
+          direction = "float",
+        }
+
+        nnoremap("<leader>tf", ":ToggleTerm direction=float<CR>")
+        nnoremap("<leader>th", ":ToggleTerm direction=horizontal<CR>")
+        nnoremap("<leader>tv", ":ToggleTerm direction=vertical<CR>")
+      end
+    },
+
+    {
+      'github/copilot.vim',
+      cmd = "Cen",
+      config = function(_, _)
+        vim.g.copilot_no_tab_map = true
+        vim.g.copilot_enabled = false
+        imap("<C-J>", "copilot#Accept('')")
+        vim.cmd [[command! Cen :let g:copilot_enabled=v:true]]
+      end
+    },
+  },
+  {
+    change_detection = {
+      enabled = false
+    },
+    install = {
+      colorscheme = { "gruvbox" }
+    },
+  }
+)

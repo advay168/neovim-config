@@ -1,13 +1,4 @@
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-      },
-    },
-  },
-  pickers = {
-  },
-}
+require('telescope').setup {}
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<space>b', builtin.buffers, { noremap = true })

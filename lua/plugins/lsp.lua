@@ -3,7 +3,7 @@ require("mason-lspconfig").setup()
 
 require("neodev").setup({
   library = {
-    plugins = { "nvim-dap-ui" },
+    plugins = { "lazy.nvim", "nvim-dap-ui" },
   },
 })
 
@@ -57,12 +57,14 @@ require 'lspconfig'.pyright.setup {
   capabilities = capabilities,
 }
 
-require 'lspconfig'.tsserver.setup {
+require 'lspconfig'.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
 
-require 'lspconfig'.lua_ls.setup {
+-- Commented out html plugins because of limited use currently
+--[[
+require 'lspconfig'.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
@@ -71,14 +73,15 @@ require 'lspconfig'.emmet_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
+]]
 
 --require("mason-lspconfig").setup_handlers {
---function(server_name)
---require("lspconfig")[server_name].setup {
---on_attach = on_attach,
---capabilities = capabilities,
---}
---end,
+--  function(server_name)
+--    require("lspconfig")[server_name].setup {
+--      on_attach = on_attach,
+--      capabilities = capabilities,
+--    }
+--  end,
 --}
 
-require("plugins.cmp")
+--require("plugins.cmp")
