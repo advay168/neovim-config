@@ -14,8 +14,8 @@ vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", noremap_silent)
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", noremap_silent)
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", noremap_silent)
 
-vim.api.nvim_set_keymap("n", "<C-q>", ":exe 'edit' stdpath('config').'/init.lua'<cr>", silent)
-vim.api.nvim_set_keymap("n", "<C-Q>", ":exe 'edit' stdpath('config').'/init.lua'<CR>:cd %:h<CR>", silent)
+vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>exe 'edit' stdpath('config').'/init.lua'<cr>", silent)
+vim.api.nvim_set_keymap("n", "<C-Q>", "<cmd>exe 'edit' stdpath('config').'/init.lua'<CR>:cd %:h<CR>", silent)
 
 vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], silent)
 

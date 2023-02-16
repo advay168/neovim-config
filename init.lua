@@ -131,13 +131,13 @@ require("lazy").setup(
             }
           }
         }
-        vim.api.nvim_set_keymap("n", "<leader>df", ":TSCppDefineClassFunc<cr>", noremap_silent)
-        vim.api.nvim_set_keymap("x", "<leader>df", ":TSCppDefineClassFunc<cr>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>", noremap_silent)
+        vim.api.nvim_set_keymap("x", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>", noremap_silent)
       end
     },
     {
       'nvim-treesitter/nvim-treesitter',
-      build = ':TSUpdateSync',
+      build = '<cmd>TSUpdateSync',
       opts = {
         --ensure_installed = "all",
         highlight = {
@@ -152,7 +152,7 @@ require("lazy").setup(
     {
       'mbbill/undotree',
       keys = {
-        { "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>" }
+        { "<leader>u", "<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>" }
       }
     },
     {
@@ -216,7 +216,7 @@ require("lazy").setup(
         end
         vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
-        vim.api.nvim_set_keymap("n", "<leader>ne", ":NvimTreeToggle<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<leader>ne", "<cmd>NvimTreeToggle<CR>", noremap_silent)
       end
     },
     {
@@ -232,27 +232,27 @@ require("lazy").setup(
           })
         end
 
-        vim.api.nvim_set_keymap("n", "<A-,>", ":BufferPrevious<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-.>", ":BufferNext<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-,>", "<cmd>BufferPrevious<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-.>", "<cmd>BufferNext<CR>", noremap_silent)
 
-        vim.api.nvim_set_keymap("n", "<A-<>", ":BufferMovePrevious<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A->>", ":BufferMoveNext<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-<>", "<cmd>BufferMovePrevious<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A->>", "<cmd>BufferMoveNext<CR>", noremap_silent)
 
-        vim.api.nvim_set_keymap("n", "<A-1>", ":BufferGoto 1<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-2>", ":BufferGoto 2<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-3>", ":BufferGoto 3<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-4>", ":BufferGoto 4<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-5>", ":BufferGoto 5<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-6>", ":BufferGoto 6<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-7>", ":BufferGoto 7<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-8>", ":BufferGoto 8<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-9>", ":BufferGoto 9<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-0>", ":BufferLast<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-1>", "<cmd>BufferGoto 1<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-2>", "<cmd>BufferGoto 2<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-3>", "<cmd>BufferGoto 3<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-4>", "<cmd>BufferGoto 4<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-5>", "<cmd>BufferGoto 5<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-6>", "<cmd>BufferGoto 6<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-7>", "<cmd>BufferGoto 7<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-8>", "<cmd>BufferGoto 8<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-9>", "<cmd>BufferGoto 9<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-0>", "<cmd>BufferLast<CR>", noremap_silent)
 
-        vim.api.nvim_set_keymap("n", "<A-q>", ":BufferClose<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-D>", ":BufferClose!<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-Q>", ":BufferClose!<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<A-p>", ":BufferPick<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-q>", "<cmd>BufferClose<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-D>", "<cmd>BufferClose!<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-Q>", "<cmd>BufferClose!<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<A-p>", "<cmd>BufferPick<CR>", noremap_silent)
 
         local nvim_tree_events = require('nvim-tree.events')
         local bufferline_api = require('bufferline.api')
@@ -357,9 +357,9 @@ require("lazy").setup(
 
         local on_attach = function(client, bufnr)
           local bufopts = { noremap = true, silent = true, buffer = bufnr }
-          vim.keymap.set('n', 'gd', ":Telescope lsp_definitions<CR>", bufopts)
-          vim.keymap.set('n', 'gr', ":Telescope lsp_references<CR>", bufopts)
-          vim.keymap.set('n', 'gi', ":Telescope lsp_implementations<CR>", bufopts)
+          vim.keymap.set('n', 'gd', "<cmd>Telescope lsp_definitions<CR>", bufopts)
+          vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references<CR>", bufopts)
+          vim.keymap.set('n', 'gi', "<cmd>Telescope lsp_implementations<CR>", bufopts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
           vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
@@ -384,7 +384,7 @@ require("lazy").setup(
         require 'lspconfig'.clangd.setup {
           on_attach = function(client, bufnr)
             on_attach(client, bufnr)
-            vim.keymap.set("", "<leader>o", ":ClangdSwitchSourceHeader<CR>")
+            vim.keymap.set("", "<leader>o", "<cmd>ClangdSwitchSourceHeader<CR>")
           end,
           capabilities = capabilities,
         }
@@ -675,9 +675,9 @@ require("lazy").setup(
           direction = "float",
         }
 
-        vim.api.nvim_set_keymap("n", "<leader>tf", ":ToggleTerm direction=float<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", noremap_silent)
-        vim.api.nvim_set_keymap("n", "<leader>tv", ":ToggleTerm direction=vertical<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", noremap_silent)
+        vim.api.nvim_set_keymap("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", noremap_silent)
       end
     },
 
