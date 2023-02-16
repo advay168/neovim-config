@@ -2,14 +2,6 @@ vim.g.mapleader = " "
 require("options")
 require("keymaps")
 
-vim.cmd [[
-  augroup pythonFile
-    autocmd FileType python setlocal tabstop=4
-    autocmd FileType python setlocal softtabstop=4
-    autocmd FileType python setlocal shiftwidth=4
-  augroup END
-]]
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 --[[
 if not vim.loop.fs_stat(lazypath) then
@@ -33,7 +25,7 @@ require("lazy").setup(
     'antoinemadec/FixCursorHold.nvim',
     'tpope/vim-repeat',
     'tpope/vim-surround',
-    'tommcdo/vim-exchange',
+    'tpope/vim-sleuth',
     'lukas-reineke/indent-blankline.nvim',
     'dstein64/nvim-scrollview',
 
@@ -137,7 +129,7 @@ require("lazy").setup(
     },
     {
       'nvim-treesitter/nvim-treesitter',
-      build = '<cmd>TSUpdateSync',
+      build = ':TSUpdateSync',
       opts = {
         --ensure_installed = "all",
         highlight = {

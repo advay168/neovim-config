@@ -1,6 +1,6 @@
-_G.noremap = {noremap = true}
-_G.silent = {silent = true}
-_G.noremap_silent = {noremap = true, silent = true}
+_G.noremap = { noremap = true }
+_G.silent = { silent = true }
+_G.noremap_silent = { noremap = true, silent = true }
 
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", noremap_silent)
 vim.api.nvim_set_keymap("x", "<Leader>c", [["+y]], silent)

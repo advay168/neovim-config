@@ -15,12 +15,14 @@ vim.opt.scrolloff = 7
 vim.opt.mouse = "a"
 vim.opt.matchpairs = vim.opt.matchpairs + "<:>"
 
-vim.opt.tabstop=2
-vim.opt.softtabstop=2
-vim.opt.shiftwidth=2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+
+vim.cmd [[
+  autocmd FileType python setlocal shiftwidth=4
+]]
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
