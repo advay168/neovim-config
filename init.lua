@@ -16,13 +16,11 @@ lazypath,
 end
 ]]
 vim.opt.rtp:prepend(lazypath)
-
 _G.webdev_icons_enabled = os.getenv("wt") == "1"
 require("lazy").setup(
   {
     'nathom/filetype.nvim',
     'nvim-lua/plenary.nvim',
-    'antoinemadec/FixCursorHold.nvim',
     'tpope/vim-repeat',
     'tpope/vim-surround',
     'tpope/vim-sleuth',
@@ -41,10 +39,6 @@ require("lazy").setup(
       priority = 1000
     },
 
-    {
-      'dstein64/vim-startuptime',
-      cmd = "StartupTime"
-    },
     {
       'nvim-treesitter/nvim-treesitter-context',
       dependencies = { "nvim-treesitter" },
@@ -149,6 +143,7 @@ require("lazy").setup(
     },
     {
       'nvim-tree/nvim-tree.lua',
+      enabled = false,
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function(_, _)
         vim.g.loaded_netrw = 1
@@ -214,6 +209,7 @@ require("lazy").setup(
     {
       'romgrk/barbar.nvim',
       dependencies = { "nvim-web-devicons" },
+      priority = 40,
       config = function(_, _)
         if (not webdev_icons_enabled) then
           require("bufferline").setup({
@@ -246,6 +242,8 @@ require("lazy").setup(
         vim.api.nvim_set_keymap("n", "<A-Q>", "<cmd>BufferClose!<CR>", noremap_silent)
         vim.api.nvim_set_keymap("n", "<A-p>", "<cmd>BufferPick<CR>", noremap_silent)
 
+        local exists = pcall(require, "nvim-tree")
+        if not exists then return end
         local nvim_tree_events = require('nvim-tree.events')
         local bufferline_api = require('bufferline.api')
 
@@ -289,6 +287,7 @@ require("lazy").setup(
     --'kien/rainbow_parentheses.vim' ,
     {
       'preservim/nerdcommenter',
+      event = "VeryLazy",
       config = function(_, _)
         vim.g.NERDCommentEmptyLines = 1
         vim.g.NERDDefaultAlign = 'left'
@@ -297,17 +296,20 @@ require("lazy").setup(
         vim.api.nvim_set_keymap("x", "<C-_>", "<Plug>NERDCommenterToggle", noremap_silent)
       end
     },
+
     {
       'nvim-telescope/telescope.nvim',
       version = '0.1.1',
+      cmd = "Telescope",
+      keys = { "<leader>b", "<C-p>", "<C-f>", "<leadertt>" },
       config = function(_, _)
         require('telescope').setup {}
 
         local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<space>b', builtin.buffers, { noremap = true })
+        vim.keymap.set('n', '<leader>b', builtin.buffers, { noremap = true })
         vim.keymap.set('n', '<C-p>', builtin.find_files, { noremap = true })
         vim.keymap.set('n', '<C-f>', builtin.live_grep, { noremap = true })
-        vim.keymap.set('n', '<space>tt', builtin.builtin, { noremap = true })
+        vim.keymap.set('n', '<leader>tt', builtin.builtin, { noremap = true })
       end
     },
 
@@ -340,6 +342,7 @@ require("lazy").setup(
             plugins = { "lazy.nvim" },
           },
         })
+        require("neodev").setup()
 
         local opts = { noremap = true, silent = true }
         vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -504,7 +507,7 @@ require("lazy").setup(
             end, { "i", "s" }),
             ['<C-b>'] = cmp.mapping.scroll_docs( -4),
             ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-Space>'] = cmp.mapping.complete({}),
             ['<C-e>'] = cmp.mapping.abort(),
             ['<CR>'] = cmp.mapping.confirm({ select = false }),
           }),
@@ -556,19 +559,22 @@ require("lazy").setup(
       'mfussenegger/nvim-dap',
       dependencies = {
         'mfussenegger/nvim-dap-python',
+        {
+          'rcarriga/nvim-dap-ui',
+        },
       },
       keys = {
         { "<leader>db", function() require 'dap'.toggle_breakpoint() end },
         { "<leader>dc", function() require 'dap'.run_to_cursor() end },
         { "<F6>",       function() require 'dap'.step_into() end },
-        { "<F5>",       function() require 'dap'.continue() end },
+        { "<F5>",       function() require 'dap'.continue({}) end },
         { "<F4>",       function() require 'dap'.step_out() end },
         { "<F3>",       function() require 'dap'.step_over() end },
         { "<leader>dh", function() require 'dap'.pause() end },
-        { "<leader>dr", function() require 'dapui'.float_element('repl') end },
+        { "<leader>dr", function() require 'dapui'.float_element('repl', {}) end },
         { "<leader>dl", function() require 'dap'.run_last() end },
         { "<leader>dq", function() require 'dap'.close() end },
-        { "<leader>dd", function() require 'dapui'.toggle() end },
+        { "<leader>dd", function() require 'dapui'.toggle({}) end },
       },
       config = function(_, _)
         vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
@@ -601,19 +607,12 @@ require("lazy").setup(
             type = "codelldb",
             request = "launch",
             program = function()
+              ---@diagnostic disable-next-line: redundant-parameter, param-type-mismatch
               return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
             end,
             cwd = '${workspaceFolder}',
           },
         }
-      end
-    },
-    {
-      'rcarriga/nvim-dap-ui',
-      commit = "f2206de65ea39093e3f13992507fc985c17aa763", -- Some bug of opening multiple buffers on startup
-      dependencies = { 'mfussenegger/nvim-dap' },
-      config = function(_, _)
-        local dap = require('dap')
         local dapui = require("dapui")
         dapui.setup({
           layouts = {
@@ -650,10 +649,12 @@ require("lazy").setup(
         dap.listeners.before.event_terminated["dapui_config"] = dapui.close
         dap.listeners.before.event_exited["dapui_config"] = dapui.close
       end
+
     },
     {
       'akinsho/toggleterm.nvim',
       version = '*',
+      keys = { "<leader>tf", "<leader>th", "<leader>tv" },
       config = function(_, _)
         require("toggleterm").setup {
           size = function(term)
