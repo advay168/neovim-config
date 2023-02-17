@@ -300,16 +300,22 @@ require("lazy").setup(
     {
       'nvim-telescope/telescope.nvim',
       version = '0.1.1',
+      dependencies = { {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      } },
       cmd = "Telescope",
       keys = { "<leader>b", "<C-p>", "<C-f>", "<leadertt>" },
       config = function(_, _)
-        require('telescope').setup {}
+        require('telescope').setup {
+        }
 
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>b', builtin.buffers, { noremap = true })
         vim.keymap.set('n', '<C-p>', builtin.find_files, { noremap = true })
         vim.keymap.set('n', '<C-f>', builtin.live_grep, { noremap = true })
         vim.keymap.set('n', '<leader>tt', builtin.builtin, { noremap = true })
+        require('telescope').load_extension('fzf')
       end
     },
 
@@ -319,20 +325,15 @@ require("lazy").setup(
     },
 
     {
-      'williamboman/mason-lspconfig.nvim',
-      dependencies = {
-        'williamboman/mason.nvim',
-      },
+      'williamboman/mason.nvim',
       config = function(_, _)
         require("mason").setup()
-        require("mason-lspconfig").setup()
       end
     },
 
     {
       'neovim/nvim-lspconfig',
       dependencies = {
-        'williamboman/mason-lspconfig.nvim',
         'folke/neodev.nvim',
         'folke/neoconf.nvim',
       },
