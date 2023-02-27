@@ -16,7 +16,6 @@ lazypath,
 end
 ]]
 vim.opt.rtp:prepend(lazypath)
-_G.webdev_icons_enabled = os.getenv("wt") == "1"
 require("lazy").setup("plugins",
   {
     change_detection = {

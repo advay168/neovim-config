@@ -3,10 +3,6 @@ return {
   'tpope/vim-repeat',
   'tpope/vim-surround',
   {
-    'stevearc/oil.nvim',
-    config = true
-  },
-  {
     'mbbill/undotree',
     keys = {
       { "<leader>u", "<cmd>UndotreeToggle<CR><cmd>UndotreeFocus<CR>" }

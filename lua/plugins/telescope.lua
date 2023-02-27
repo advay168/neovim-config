@@ -1,3 +1,6 @@
+local function l(x)
+  return "<leader>" .. x
+end
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -7,7 +10,7 @@ return {
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     } },
     cmd = "Telescope",
-    keys = { "<leader>b", "<C-p>", "<C-f>", "<leader>tt" },
+    keys = {l("tt"), l("fb"), l("ff"), l("fg"), l("fh")},
     config = function()
       require('telescope').setup {
       }

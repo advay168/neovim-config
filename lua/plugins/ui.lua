@@ -1,10 +1,25 @@
+local webdev_icons_enabled = os.getenv("wt") == "1"
+local oil_column = ""
+if webdev_icons_enabled then
+  oil_column = "icon"
+end
 return {
   'lukas-reineke/indent-blankline.nvim',
   'dstein64/nvim-scrollview',
   {
+    'stevearc/oil.nvim',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      columns = {
+        oil_column
+      }
+    },
+    config = true
+  },
+  {
     'nvim-tree/nvim-tree.lua',
     enabled = false,
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
