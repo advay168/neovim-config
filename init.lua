@@ -286,15 +286,9 @@ require("lazy").setup(
     --'junegunn/rainbow_parentheses.vim' ,
     --'kien/rainbow_parentheses.vim' ,
     {
-      'preservim/nerdcommenter',
+      'numToStr/Comment.nvim',
       event = "VeryLazy",
-      config = function(_, _)
-        vim.g.NERDCommentEmptyLines = 1
-        vim.g.NERDDefaultAlign = 'left'
-
-        vim.api.nvim_set_keymap("n", "<C-_>", "<Plug>NERDCommenterToggle", noremap_silent)
-        vim.api.nvim_set_keymap("x", "<C-_>", "<Plug>NERDCommenterToggle", noremap_silent)
-      end
+      config = true
     },
 
     {

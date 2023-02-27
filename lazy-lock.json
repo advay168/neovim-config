@@ -1,4 +1,5 @@
 {
+  "Comment.nvim": { "branch": "master", "commit": "6821b3ae27a57f1f3cf8ed030e4a55d70d0c4e43" },
   "LuaSnip": { "branch": "master", "commit": "58fbfc627a93281a77f7d161d4ff702e639677b1" },
   "barbar.nvim": { "branch": "master", "commit": "2d53f49c21327da48f0447841027848f49e1fea4" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
@@ -16,7 +17,6 @@
   "mason.nvim": { "branch": "main", "commit": "7dd606b0b4981631c804c981b626189e191d49ca" },
   "neoconf.nvim": { "branch": "main", "commit": "7213f7919ca67e3f3d5f95d415b0eea965886e2f" },
   "neodev.nvim": { "branch": "main", "commit": "a81e749d0fe8429cd340b2e40f274b344bef42ac" },
-  "nerdcommenter": { "branch": "master", "commit": "d069f7fb562fb9eb6911fe23cda7aca2a387043e" },
   "null-ls.nvim": { "branch": "main", "commit": "a75bba0ae5e89df03f01c17a1d913884eeebcc2e" },
   "nvim-cmp": { "branch": "main", "commit": "ea9eaff5739856f3187d228d2c1181ea49fd4697" },
   "nvim-dap": { "branch": "master", "commit": "82e98f340cf5183e1c8743a3986c5b2e8705063b" },
