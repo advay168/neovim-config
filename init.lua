@@ -1,3 +1,4 @@
+vim.g.loaded_python3_provider = 1 -- Hack to speedup opening python files. Tries to load python provider even though no plugin uses it
 vim.g.mapleader = " "
 require("options")
 require("keymaps")
