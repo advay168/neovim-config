@@ -12,6 +12,25 @@ return {
       {
         "L3MON4D3/LuaSnip",
         dependencies = { "honza/vim-snippets" },
+        config = function()
+          local luasnip = require("luasnip")
+          luasnip.config.set_config({
+            store_selection_keys = '<c-s>',
+          })
+          require("luasnip.loaders.from_snipmate").lazy_load()
+          -- Remove tabpoints on leaving snippet
+          vim.api.nvim_create_autocmd('ModeChanged', {
+            pattern = '*',
+            callback = function()
+              if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+                  and luasnip.session.current_nodes[vim.api.nvim_get_current_buf()]
+                  and not luasnip.session.jump_active
+              then
+                require('luasnip').unlink_current()
+              end
+            end
+          })
+        end
       },
     },
     config = function()
@@ -117,11 +136,6 @@ return {
           { name = 'cmdline' }
         })
       })
-
-      luasnip.config.set_config({
-        store_selection_keys = '<c-s>',
-      })
-      require("luasnip.loaders.from_snipmate").lazy_load()
     end
   },
 }

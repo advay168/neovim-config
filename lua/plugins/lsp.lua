@@ -75,18 +75,24 @@ return {
         capabilities = capabilities,
       }
 
-      -- Commented out html plugins because of limited use currently
-      --[[
-            require 'lspconfig'.tsserver.setup {
-              on_attach = on_attach,
-              capabilities = capabilities,
-            }
+      function _G.web()
+        require 'lspconfig'.tsserver.setup {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
 
-            require 'lspconfig'.emmet_ls.setup {
-              on_attach = on_attach,
-              capabilities = capabilities,
-            }
-        --]]
+        require 'lspconfig'.emmet_ls.setup {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
+
+        require 'lspconfig'.cssls.setup {
+          on_attach = on_attach,
+          capabilities = capabilities,
+        }
+
+        vim.cmd.LspStart()
+      end
     end
   },
   {
@@ -94,12 +100,12 @@ return {
     dependencies = {
       'neovim/nvim-lspconfig'
     },
-    ft = "py",
     config = function()
       local null_ls = require("null-ls")
       null_ls.setup({
         sources = {
           null_ls.builtins.formatting.black,
+          null_ls.builtins.formatting.prettierd,
         }
       })
     end

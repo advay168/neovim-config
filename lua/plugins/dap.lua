@@ -3,9 +3,11 @@ return {
     'mfussenegger/nvim-dap',
     dependencies = {
       'mfussenegger/nvim-dap-python',
+      'rcarriga/nvim-dap-ui',
       {
-        'rcarriga/nvim-dap-ui',
-      },
+        'theHamsta/nvim-dap-virtual-text',
+        config = true
+      }
     },
     keys = {
       { "<leader>db", function() require 'dap'.toggle_breakpoint() end },
