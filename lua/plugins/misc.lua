@@ -19,7 +19,7 @@ return {
     config = function()
       vim.g.copilot_no_tab_map = true
       vim.g.copilot_enabled = false
-      vim.api.nvim_set_keymap("i", "<C-J>", "copilot#Accept('')", noremap_silent)
+      vim.api.nvim_set_keymap("i", "<C-J>", "copilot#Accept('')", {noremap = true, silent = true, expr = true})
       vim.cmd [[command! Cen :let g:copilot_enabled=v:true]]
     end
   },

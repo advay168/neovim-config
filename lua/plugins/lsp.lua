@@ -86,6 +86,7 @@ return {
             vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
             on_attach(client, bufnr)
           end,
+          capabilities = capabilities,
         }
       })
 
