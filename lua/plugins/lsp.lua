@@ -5,13 +5,15 @@ return {
       require("mason").setup()
     end
   },
-
+  {
+    "simrat39/rust-tools.nvim",
+    lazy = true
+  },
   {
     'neovim/nvim-lspconfig',
     dependencies = {
       'folke/neodev.nvim',
       'folke/neoconf.nvim',
-      "simrat39/rust-tools.nvim",
     },
     config = function()
       require("neodev").setup({
@@ -76,19 +78,30 @@ return {
         capabilities = capabilities,
       }
 
-      local rt = require("rust-tools")
-      rt.setup({
-        server = {
-          on_attach = function(client, bufnr)
-            -- Hover actions
-            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-            -- Code action groups
-            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-            on_attach(client, bufnr)
-          end,
-          capabilities = capabilities,
-        }
+      vim.api.nvim_create_autocmd('FileType', {
+        desc = 'Initialise rust tools to avoid eager loading dap',
+        pattern = 'rust',
+        group = vim.api.nvim_create_augroup('RTools', { clear = true }),
+        callback = function()
+          local rt = require("rust-tools")
+          rt.setup({
+            server = {
+              on_attach = function(client, bufnr)
+                -- Hover actions
+                vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+                -- Code action groups
+                vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+                on_attach(client, bufnr)
+              end,
+              capabilities = capabilities,
+            },
+          })
+          vim.cmd.LspStart()
+
+          return true
+        end,
       })
+
 
       function _G.web()
         require 'lspconfig'.tsserver.setup {
