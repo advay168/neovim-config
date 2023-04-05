@@ -3,6 +3,9 @@ local oil_column = ""
 if webdev_icons_enabled then
   oil_column = "icon"
 end
+
+vim.g.bufferline = {icons = false}
+
 return {
   'lukas-reineke/indent-blankline.nvim',
   'dstein64/nvim-scrollview',
@@ -84,7 +87,6 @@ return {
   {
     'romgrk/barbar.nvim',
     dependencies = { "nvim-web-devicons" },
-    priority = 40,
     config = function()
       if (not webdev_icons_enabled) then
         require("bufferline").setup({
