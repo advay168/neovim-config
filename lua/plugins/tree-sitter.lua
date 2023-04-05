@@ -61,22 +61,20 @@ return {
     ft = { "cpp", "cxx", "h", "hpp" },
     dependencies = { "nvim-treesitter" },
     config = function()
-      require 'nvim-treesitter.configs'.setup {
-        nt_cpp_tools = {
-          enable = true,
-          preview = {
-            quit = 'q',
-            accept = '<tab>'
-          },
-          header_extension = 'h',
-          source_extension = 'cxx',
-          custom_define_class_function_commands = { -- optional
-            TSCppImplWrite = {
-              output_handle = require 'nvim-treesitter.nt-cpp-tools.output_handlers'.get_add_to_cpp()
-            }
+      require 'nt-cpp-tools'.setup {
+        preview = {
+          quit = 'q',
+          accept = '<tab>'
+        },
+        header_extension = 'h',
+        source_extension = 'cxx',
+        custom_define_class_function_commands = { -- optional
+          TSCppImplWrite = {
+            output_handle = require 'nt-cpp-tools.output_handlers'.get_add_to_cpp()
           }
         }
       }
+
       vim.api.nvim_set_keymap("n", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>", noremap_silent)
       vim.api.nvim_set_keymap("x", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>", noremap_silent)
     end

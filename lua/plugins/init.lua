@@ -5,7 +5,12 @@ return {
     'ellisonleao/gruvbox.nvim',
     config = function()
       require("gruvbox").setup({
-        italic = false,
+        italic = {
+          strings = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
         dim_inactive = true,
       })
       vim.cmd [[colorscheme gruvbox]]

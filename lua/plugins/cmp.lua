@@ -70,7 +70,7 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
         },
         window = {
-          --completion = cmp.config.window.bordered(),
+          -- completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
@@ -150,6 +150,9 @@ return {
       })
 
       cmp.setup.cmdline({ '/', '?' }, {
+        view = {
+          entries = { name = 'custom', selection_order = 'near_cursor' }
+        },
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
           { name = 'buffer' }
@@ -157,6 +160,9 @@ return {
       })
 
       cmp.setup.cmdline(':', {
+        view = {
+          entries = { name = 'custom', selection_order = 'near_cursor' }
+        },
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
           { name = 'path' }
