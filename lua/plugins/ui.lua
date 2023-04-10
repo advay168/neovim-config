@@ -5,15 +5,15 @@ if webdev_icons_enabled then
 end
 
 return {
-  'lukas-reineke/indent-blankline.nvim',
-  'dstein64/nvim-scrollview',
+  "lukas-reineke/indent-blankline.nvim",
+  "dstein64/nvim-scrollview",
   {
-    'nvim-tree/nvim-web-devicons',
+    "nvim-tree/nvim-web-devicons",
     cond = webdev_icons_enabled,
     lazy = true,
   },
   {
-    'stevearc/oil.nvim',
+    "stevearc/oil.nvim",
     dependencies = { "nvim-web-devicons" },
     cmd = "Oil",
     init = function()
@@ -42,7 +42,7 @@ return {
     config = true
   },
   {
-    'romgrk/barbar.nvim',
+    "romgrk/barbar.nvim",
     dependencies = "nvim-web-devicons",
     init = function() vim.g.barbar_auto_setup = false end,
     config = function()
@@ -93,28 +93,28 @@ return {
 
       local exists = pcall(require, "nvim-tree")
       if not exists then return end
-      local nvim_tree_events = require('nvim-tree.events')
-      local bufferline_api = require('bufferline.api')
+      local nvim_tree_events = require("nvim-tree.events")
+      local bufferline_api = require("bufferline.api")
 
       local function get_tree_size()
-        return require 'nvim-tree.view'.View.width
+        return require "nvim-tree.view".View.width
       end
 
-      nvim_tree_events.subscribe('TreeOpen', function()
+      nvim_tree_events.subscribe("TreeOpen", function()
         bufferline_api.set_offset(get_tree_size())
       end)
 
-      nvim_tree_events.subscribe('Resize', function()
+      nvim_tree_events.subscribe("Resize", function()
         bufferline_api.set_offset(get_tree_size())
       end)
 
-      nvim_tree_events.subscribe('TreeClose', function()
+      nvim_tree_events.subscribe("TreeClose", function()
         bufferline_api.set_offset(0)
       end)
     end
   },
   {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     enabled = false,
     config = function()
       local opts = {
@@ -123,8 +123,8 @@ return {
         },
       }
       if (not webdev_icons_enabled) then
-        opts.options.section_separators = ''
-        opts.options.component_separators = ''
+        opts.options.section_separators = ""
+        opts.options.component_separators = ""
         opts.options.icons_enabled = false
       end
 
@@ -132,7 +132,7 @@ return {
     end
   },
   {
-    'nvim-tree/nvim-tree.lua',
+    "nvim-tree/nvim-tree.lua",
     enabled = false,
     dependencies = { "nvim-web-devicons" },
     config = function()

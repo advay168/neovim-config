@@ -1,6 +1,6 @@
 return {
-  'akinsho/toggleterm.nvim',
-  version = '*',
+  "akinsho/toggleterm.nvim",
+  version = "*",
   keys = { "<leader>tf", "<leader>th", "<leader>tv" },
   config = function()
     require("toggleterm").setup {

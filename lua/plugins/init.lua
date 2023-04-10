@@ -1,8 +1,8 @@
 return {
-  'nathom/filetype.nvim',
-  'nvim-lua/plenary.nvim',
+  "nathom/filetype.nvim",
+  "nvim-lua/plenary.nvim",
   {
-    'ellisonleao/gruvbox.nvim',
+    "ellisonleao/gruvbox.nvim",
     config = function()
       require("gruvbox").setup({
         italic = {

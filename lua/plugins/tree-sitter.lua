@@ -1,12 +1,12 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter-context',
+    "nvim-treesitter/nvim-treesitter-context",
     event = "CursorHold",
     dependencies = { "nvim-treesitter" },
     config = true
   },
   {
-    'nvim-treesitter/nvim-treesitter-textobjects',
+    "nvim-treesitter/nvim-treesitter-textobjects",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter" },
     opts = {
@@ -15,64 +15,64 @@ return {
           enable = true,
           lookahead = true,
           keymaps = {
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
+            ["aa"] = "@parameter.outer",
+            ["ia"] = "@parameter.inner",
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
           },
         },
         move = {
           enable = true,
           set_jumps = true,
           goto_next_start = {
-            [']m'] = '@function.outer',
-            [']]'] = '@class.outer',
+            ["]m"] = "@function.outer",
+            ["]]"] = "@class.outer",
           },
           goto_next_end = {
-            [']M'] = '@function.outer',
-            [']['] = '@class.outer',
+            ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
           },
           goto_previous_start = {
-            ['[m'] = '@function.outer',
-            ['[['] = '@class.outer',
+            ["[m"] = "@function.outer",
+            ["[["] = "@class.outer",
           },
           goto_previous_end = {
-            ['[M'] = '@function.outer',
-            ['[]'] = '@class.outer',
+            ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
           },
         },
         swap = {
           enable = true,
           swap_next = {
-            ['<leader>a'] = '@parameter.inner',
+            ["<leader>a"] = "@parameter.inner",
           },
           swap_previous = {
-            ['<leader>A'] = '@parameter.inner',
+            ["<leader>A"] = "@parameter.inner",
           },
         },
       }
     },
     config = function(_, opts)
-      require 'nvim-treesitter.configs'.setup(opts)
+      require "nvim-treesitter.configs".setup(opts)
     end
   },
   {
-    'Badhi/nvim-treesitter-cpp-tools',
+    "Badhi/nvim-treesitter-cpp-tools",
     ft = { "cpp", "cxx", "h", "hpp" },
     dependencies = { "nvim-treesitter" },
     config = function()
-      require 'nt-cpp-tools'.setup {
+      require "nt-cpp-tools".setup {
         preview = {
-          quit = 'q',
-          accept = '<tab>'
+          quit = "q",
+          accept = "<tab>"
         },
-        header_extension = 'h',
-        source_extension = 'cxx',
+        header_extension = "h",
+        source_extension = "cxx",
         custom_define_class_function_commands = { -- optional
           TSCppImplWrite = {
-            output_handle = require 'nt-cpp-tools.output_handlers'.get_add_to_cpp()
+            output_handle = require "nt-cpp-tools.output_handlers".get_add_to_cpp()
           }
         }
       }
@@ -82,9 +82,9 @@ return {
     end
   },
   {
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
-    build = ':TSUpdateSync',
+    build = ":TSUpdateSync",
     opts = {
       --ensure_installed = "all",
       highlight = {
@@ -92,7 +92,7 @@ return {
       }
     },
     config = function(_, opts)
-      require 'nvim-treesitter.configs'.setup(opts)
+      require "nvim-treesitter.configs".setup(opts)
     end
   },
 }
