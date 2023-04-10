@@ -51,7 +51,7 @@ return {
             return false
           end
           -- disable completion in comments
-          local context = require "cmp.config.context"
+          local context = require("cmp.config.context")
           if vim.api.nvim_get_mode().mode == "c" then
             return true
           else

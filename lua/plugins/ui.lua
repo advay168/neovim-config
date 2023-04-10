@@ -97,7 +97,7 @@ return {
       local bufferline_api = require("bufferline.api")
 
       local function get_tree_size()
-        return require "nvim-tree.view".View.width
+        return require("nvim-tree.view").View.width
       end
 
       nvim_tree_events.subscribe("TreeOpen", function()

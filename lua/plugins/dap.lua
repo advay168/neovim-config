@@ -10,17 +10,17 @@ return {
       }
     },
     keys = {
-      { "<leader>db", function() require "dap".toggle_breakpoint() end },
-      { "<leader>dc", function() require "dap".run_to_cursor() end },
-      { "<F6>",       function() require "dap".step_into() end },
-      { "<F5>",       function() require "dap".continue({}) end },
-      { "<F4>",       function() require "dap".step_out() end },
-      { "<F3>",       function() require "dap".step_over() end },
-      { "<leader>dh", function() require "dap".pause() end },
-      { "<leader>dr", function() require "dapui".float_element("repl", {}) end },
-      { "<leader>dl", function() require "dap".run_last() end },
-      { "<leader>dq", function() require "dap".close() end },
-      { "<leader>dd", function() require "dapui".toggle({}) end },
+      { "<leader>db", function() require("dap").toggle_breakpoint() end },
+      { "<leader>dc", function() require("dap").run_to_cursor() end },
+      { "<F6>",       function() require("dap").step_into() end },
+      { "<F5>",       function() require("dap").continue({}) end },
+      { "<F4>",       function() require("dap").step_out() end },
+      { "<F3>",       function() require("dap").step_over() end },
+      { "<leader>dh", function() require("dap").pause() end },
+      { "<leader>dr", function() require("dapui").float_element("repl", {}) end },
+      { "<leader>dl", function() require("dap").run_last() end },
+      { "<leader>dq", function() require("dap").close() end },
+      { "<leader>dd", function() require("dapui").toggle({}) end },
     },
     config = function()
       vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })

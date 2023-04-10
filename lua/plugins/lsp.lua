@@ -66,7 +66,7 @@ return {
         }
       })
 
-      require "lspconfig".clangd.setup {
+      require("lspconfig").clangd.setup {
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           vim.keymap.set("", "<leader>o", "<cmd>ClangdSwitchSourceHeader<CR>")
@@ -74,17 +74,17 @@ return {
         capabilities = capabilities,
       }
 
-      require "lspconfig".hls.setup {
+      require("lspconfig").hls.setup {
         on_attach = on_attach,
         capabilities = capabilities,
       }
 
-      require "lspconfig".pyright.setup {
+      require("lspconfig").pyright.setup {
         on_attach = on_attach,
         capabilities = capabilities,
       }
 
-      require "lspconfig".lua_ls.setup {
+      require("lspconfig").lua_ls.setup {
         on_attach = on_attach,
         capabilities = capabilities,
       }
@@ -115,17 +115,17 @@ return {
 
 
       function _G.web()
-        require "lspconfig".tsserver.setup {
+        require("lspconfig").tsserver.setup {
           on_attach = on_attach,
           capabilities = capabilities,
         }
 
-        require "lspconfig".emmet_ls.setup {
+        require("lspconfig").emmet_ls.setup {
           on_attach = on_attach,
           capabilities = capabilities,
         }
 
-        require "lspconfig".cssls.setup {
+        require("lspconfig").cssls.setup {
           on_attach = on_attach,
           capabilities = capabilities,
         }

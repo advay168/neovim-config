@@ -55,7 +55,7 @@ return {
       }
     },
     config = function(_, opts)
-      require "nvim-treesitter.configs".setup(opts)
+      require("nvim-treesitter.configs").setup(opts)
     end
   },
   {
@@ -63,7 +63,7 @@ return {
     ft = { "cpp", "cxx", "h", "hpp" },
     dependencies = { "nvim-treesitter" },
     config = function()
-      require "nt-cpp-tools".setup {
+      require("nt-cpp-tools").setup {
         preview = {
           quit = "q",
           accept = "<tab>"
@@ -72,7 +72,7 @@ return {
         source_extension = "cxx",
         custom_define_class_function_commands = { -- optional
           TSCppImplWrite = {
-            output_handle = require "nt-cpp-tools.output_handlers".get_add_to_cpp()
+            output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp()
           }
         }
       }
@@ -92,7 +92,7 @@ return {
       }
     },
     config = function(_, opts)
-      require "nvim-treesitter.configs".setup(opts)
+      require("nvim-treesitter.configs").setup(opts)
     end
   },
 }
