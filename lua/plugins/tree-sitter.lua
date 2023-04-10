@@ -1,11 +1,13 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter-context',
+    event = "CursorHold",
     dependencies = { "nvim-treesitter" },
     config = true
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    event = "VeryLazy",
     dependencies = { "nvim-treesitter" },
     opts = {
       textobjects = {
@@ -81,6 +83,7 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter',
+    event = "VeryLazy",
     build = ':TSUpdateSync',
     opts = {
       --ensure_installed = "all",

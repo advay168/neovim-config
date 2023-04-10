@@ -7,20 +7,23 @@ return {
   },
   {
     "simrat39/rust-tools.nvim",
-    lazy = true
+    lazy = true,
+  },
+  {
+    'j-hui/fidget.nvim',
+    event = 'CursorHold',
+    config = true,
   },
   {
     'neovim/nvim-lspconfig',
     dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'jose-elias-alvarez/null-ls.nvim',
       'folke/neodev.nvim',
       'folke/neoconf.nvim',
     },
+    event = 'CursorHold',
     config = function()
-      require("neodev").setup({
-        library = {
-          plugins = { "lazy.nvim" },
-        },
-      })
       require("neodev").setup()
 
       local opts = { noremap = true, silent = true }
@@ -54,6 +57,14 @@ return {
       end
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.black,
+          null_ls.builtins.formatting.prettierd,
+        }
+      })
 
       require 'lspconfig'.clangd.setup {
         on_attach = function(client, bufnr)
@@ -121,21 +132,6 @@ return {
 
         vim.cmd.LspStart()
       end
-    end
-  },
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    dependencies = {
-      'neovim/nvim-lspconfig'
-    },
-    config = function()
-      local null_ls = require("null-ls")
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.black,
-          null_ls.builtins.formatting.prettierd,
-        }
-      })
     end
   },
 }
