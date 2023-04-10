@@ -49,13 +49,13 @@ return {
       if (not webdev_icons_enabled) then
         require("bufferline").setup({
           icons = {
-            filetype = {enabled = false},
+            filetype = { enabled = false },
             button = "x",
-            separator =  {
+            separator = {
               left = "|"
             },
             inactive = {
-              separator =  {
+              separator = {
                 left = "|"
               },
             }
@@ -64,7 +64,7 @@ return {
       else
         require("bufferline").setup({
           icons = {
-            filetype = {enabled = false},
+            filetype = { enabled = false },
           },
         })
       end

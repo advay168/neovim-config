@@ -32,4 +32,4 @@ vim.opt.undofile = true
 vim.opt.undolevels = 1000
 vim.opt.undoreload = 10000
 
-vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank()]]
+vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank()]]
