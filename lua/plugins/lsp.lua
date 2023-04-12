@@ -11,7 +11,6 @@ return {
   },
   {
     "j-hui/fidget.nvim",
-    event = "CursorHold",
     config = true,
   },
   {
@@ -22,7 +21,6 @@ return {
       "folke/neodev.nvim",
       "folke/neoconf.nvim",
     },
-    event = "CursorHold",
     config = function()
       require("neodev").setup()
 

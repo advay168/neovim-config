@@ -41,78 +41,78 @@ return {
     },
     config = true
   },
-  {
-    "romgrk/barbar.nvim",
-    dependencies = "nvim-web-devicons",
-    init = function() vim.g.barbar_auto_setup = false end,
-    config = function()
-      if (not webdev_icons_enabled) then
-        require("bufferline").setup({
-          icons = {
-            filetype = { enabled = false },
-            button = "x",
-            separator = {
-              left = "|"
-            },
-            inactive = {
-              separator = {
-                left = "|"
-              },
-            }
-          },
-        })
-      else
-        require("bufferline").setup({
-          icons = {
-            filetype = { enabled = false },
-          },
-        })
-      end
-
-      vim.api.nvim_set_keymap("n", "<A-,>", "<cmd>BufferPrevious<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-.>", "<cmd>BufferNext<CR>", noremap_silent)
-
-      vim.api.nvim_set_keymap("n", "<A-<>", "<cmd>BufferMovePrevious<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A->>", "<cmd>BufferMoveNext<CR>", noremap_silent)
-
-      vim.api.nvim_set_keymap("n", "<A-1>", "<cmd>BufferGoto 1<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-2>", "<cmd>BufferGoto 2<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-3>", "<cmd>BufferGoto 3<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-4>", "<cmd>BufferGoto 4<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-5>", "<cmd>BufferGoto 5<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-6>", "<cmd>BufferGoto 6<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-7>", "<cmd>BufferGoto 7<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-8>", "<cmd>BufferGoto 8<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-9>", "<cmd>BufferGoto 9<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-0>", "<cmd>BufferLast<CR>", noremap_silent)
-
-      vim.api.nvim_set_keymap("n", "<A-q>", "<cmd>BufferClose<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-D>", "<cmd>BufferClose!<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-Q>", "<cmd>BufferClose!<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-p>", "<cmd>BufferPick<CR>", noremap_silent)
-
-      local exists = pcall(require, "nvim-tree")
-      if not exists then return end
-      local nvim_tree_events = require("nvim-tree.events")
-      local bufferline_api = require("bufferline.api")
-
-      local function get_tree_size()
-        return require("nvim-tree.view").View.width
-      end
-
-      nvim_tree_events.subscribe("TreeOpen", function()
-        bufferline_api.set_offset(get_tree_size())
-      end)
-
-      nvim_tree_events.subscribe("Resize", function()
-        bufferline_api.set_offset(get_tree_size())
-      end)
-
-      nvim_tree_events.subscribe("TreeClose", function()
-        bufferline_api.set_offset(0)
-      end)
-    end
-  },
+  -- {
+  --   "romgrk/barbar.nvim",
+  --   dependencies = "nvim-web-devicons",
+  --   init = function() vim.g.barbar_auto_setup = false end,
+  --   config = function()
+  --     if (not webdev_icons_enabled) then
+  --       require("bufferline").setup({
+  --         icons = {
+  --           filetype = { enabled = false },
+  --           button = "x",
+  --           separator = {
+  --             left = "|"
+  --           },
+  --           inactive = {
+  --             separator = {
+  --               left = "|"
+  --             },
+  --           }
+  --         },
+  --       })
+  --     else
+  --       require("bufferline").setup({
+  --         icons = {
+  --           filetype = { enabled = false },
+  --         },
+  --       })
+  --     end
+  --
+  --     vim.api.nvim_set_keymap("n", "<A-,>", "<cmd>BufferPrevious<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-.>", "<cmd>BufferNext<CR>", noremap_silent)
+  --
+  --     vim.api.nvim_set_keymap("n", "<A-<>", "<cmd>BufferMovePrevious<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A->>", "<cmd>BufferMoveNext<CR>", noremap_silent)
+  --
+  --     vim.api.nvim_set_keymap("n", "<A-1>", "<cmd>BufferGoto 1<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-2>", "<cmd>BufferGoto 2<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-3>", "<cmd>BufferGoto 3<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-4>", "<cmd>BufferGoto 4<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-5>", "<cmd>BufferGoto 5<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-6>", "<cmd>BufferGoto 6<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-7>", "<cmd>BufferGoto 7<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-8>", "<cmd>BufferGoto 8<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-9>", "<cmd>BufferGoto 9<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-0>", "<cmd>BufferLast<CR>", noremap_silent)
+  --
+  --     vim.api.nvim_set_keymap("n", "<A-q>", "<cmd>BufferClose<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-D>", "<cmd>BufferClose!<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-Q>", "<cmd>BufferClose!<CR>", noremap_silent)
+  --     vim.api.nvim_set_keymap("n", "<A-p>", "<cmd>BufferPick<CR>", noremap_silent)
+  --
+  --     local exists = pcall(require, "nvim-tree")
+  --     if not exists then return end
+  --     local nvim_tree_events = require("nvim-tree.events")
+  --     local bufferline_api = require("bufferline.api")
+  --
+  --     local function get_tree_size()
+  --       return require("nvim-tree.view").View.width
+  --     end
+  --
+  --     nvim_tree_events.subscribe("TreeOpen", function()
+  --       bufferline_api.set_offset(get_tree_size())
+  --     end)
+  --
+  --     nvim_tree_events.subscribe("Resize", function()
+  --       bufferline_api.set_offset(get_tree_size())
+  --     end)
+  --
+  --     nvim_tree_events.subscribe("TreeClose", function()
+  --       bufferline_api.set_offset(0)
+  --     end)
+  --   end
+  -- },
   {
     "nvim-lualine/lualine.nvim",
     enabled = false,
