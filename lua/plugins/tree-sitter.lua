@@ -77,8 +77,10 @@ return {
         }
       }
 
-      vim.api.nvim_set_keymap("n", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>", noremap_silent)
-      vim.api.nvim_set_keymap("x", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>", noremap_silent)
+      vim.api.nvim_set_keymap("n", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("x", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>",
+        { noremap = true, silent = true, desc = "" })
     end
   },
   {

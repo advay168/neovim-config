@@ -21,32 +21,42 @@ return {
       end
       require("bufferline").setup(opts)
 
-      vim.api.nvim_set_keymap("n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-.>", "<cmd>BufferLineCycleNext<CR>", noremap_silent)
+      vim.api.nvim_set_keymap("n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-.>", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true, desc = "" })
 
-      vim.api.nvim_set_keymap("n", "<A-<>", "<cmd>BufferLineMovePrev<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A->>", "<cmd>BufferLineMoveNext<CR>", noremap_silent)
+      vim.api.nvim_set_keymap("n", "<A-<>", "<cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A->>", "<cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true, desc = "" })
 
-      vim.api.nvim_set_keymap("n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-2>", "<cmd>BufferLineGoToBuffer 2<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-3>", "<cmd>BufferLineGoToBuffer 3<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-4>", "<cmd>BufferLineGoToBuffer 4<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-5>", "<cmd>BufferLineGoToBuffer 5<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-6>", "<cmd>BufferLineGoToBuffer 6<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-7>", "<cmd>BufferLineGoToBuffer 7<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-0>", "<cmd>BufferLineGoToBuffer -1<CR>", noremap_silent)
+      vim.api.nvim_set_keymap("n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-2>", "<cmd>BufferLineGoToBuffer 2<CR>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-3>", "<cmd>BufferLineGoToBuffer 3<CR>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-4>", "<cmd>BufferLineGoToBuffer 4<CR>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-5>", "<cmd>BufferLineGoToBuffer 5<CR>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-6>", "<cmd>BufferLineGoToBuffer 6<CR>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-7>", "<cmd>BufferLineGoToBuffer 7<CR>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>",
+        { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-0>", "<cmd>BufferLineGoToBuffer -1<CR>",
+        { noremap = true, silent = true, desc = "" })
 
-      vim.api.nvim_set_keymap("n", "<A-p>", "<cmd>BufferLinePick<CR>", noremap_silent)
+      vim.api.nvim_set_keymap("n", "<A-p>", "<cmd>BufferLinePick<CR>", { noremap = true, silent = true, desc = "" })
     end
   },
   {
     "moll/vim-bbye",
     config = function()
-      vim.api.nvim_set_keymap("n", "<A-q>", "<cmd>Bdelete<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-D>", "<cmd>Bdelete!<CR>", noremap_silent)
-      vim.api.nvim_set_keymap("n", "<A-Q>", "<cmd>Bdelete!<CR>", noremap_silent)
+      vim.api.nvim_set_keymap("n", "<A-q>", "<cmd>Bdelete<CR>", { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-D>", "<cmd>Bdelete!<CR>", { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<A-Q>", "<cmd>Bdelete!<CR>", { noremap = true, silent = true, desc = "" })
     end
   },
 }
