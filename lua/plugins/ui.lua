@@ -121,7 +121,7 @@ return {
       end
       vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
-      vim.api.nvim_set_keymap("n", "<leader>ne", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "" })
+      vim.api.nvim_set_keymap("n", "<leader>ne", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Toggle nvim tree" })
     end
   },
 }

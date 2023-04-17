@@ -78,9 +78,9 @@ return {
       }
 
       vim.api.nvim_set_keymap("n", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>",
-        { noremap = true, silent = true, desc = "" })
+        { noremap = true, silent = true, desc = "Define CPP class function" })
       vim.api.nvim_set_keymap("x", "<leader>df", "<cmd>TSCppDefineClassFunc<cr>",
-        { noremap = true, silent = true, desc = "" })
+        { noremap = true, silent = true, desc = "Define CPP class function" })
     end
   },
   {
