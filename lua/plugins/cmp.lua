@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    event = { "InsertEnter", "CursorHold" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -89,13 +89,13 @@ return {
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable( -1) then
-              luasnip.jump( -1)
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
             else
               fallback()
             end
           end, { "i", "s" }),
-          ["<C-b>"] = cmp.mapping.scroll_docs( -4),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete({}),
           ["<C-e>"] = cmp.mapping.abort(),

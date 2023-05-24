@@ -20,6 +20,7 @@ return {
       "jose-elias-alvarez/null-ls.nvim",
       "folke/neodev.nvim",
       "folke/neoconf.nvim",
+      "williamboman/mason.nvim",
     },
     config = function()
       require("neodev").setup()
@@ -37,10 +38,10 @@ return {
         vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-        vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-        vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-        vim.keymap.set("n", "<space>wl", function()
+        vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, bufopts)
+        vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+        vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+        vim.keymap.set("n", "<leader>wl", function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, bufopts)
         vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
@@ -55,6 +56,10 @@ return {
       end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+      }
 
       local null_ls = require("null-ls")
       null_ls.setup({
@@ -85,6 +90,13 @@ return {
       require("lspconfig").lua_ls.setup {
         on_attach = on_attach,
         capabilities = capabilities,
+        settings = {
+          Lua = {
+            workspace = {
+              checkThirdParty = false,
+            },
+          },
+        },
       }
 
       vim.api.nvim_create_autocmd("FileType", {
