@@ -1,5 +1,8 @@
 return {
-  "nathom/filetype.nvim",
+  {
+    "nathom/filetype.nvim",
+    enabled = false, -- Wait for plugin to update to new nvim version to resolve errors
+  },
   "nvim-lua/plenary.nvim",
   {
     "ellisonleao/gruvbox.nvim",
