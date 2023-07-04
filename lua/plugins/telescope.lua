@@ -15,7 +15,7 @@ return {
       },
     },
     cmd = "Telescope",
-    keys = { l("tt"), l("fb"), l("ff"), l("fg"), l("fh") },
+    keys = { l("tt"), l("fb"), l("ff"), l("<leader>"), l("fg"), l("fh") },
     config = function()
       require("telescope").setup {
       }
@@ -24,6 +24,7 @@ return {
       vim.keymap.set("n", "<leader>tt", ":Telescope ")
       vim.keymap.set("n", "<leader>fb", builtin.buffers)
       vim.keymap.set("n", "<leader>ff", builtin.find_files)
+      vim.keymap.set("n", "<leader><leader>", builtin.find_files)
       vim.keymap.set("n", "<leader>fg", builtin.live_grep)
       vim.keymap.set("n", "<leader>fh", builtin.help_tags)
       require("telescope").load_extension("fzf")

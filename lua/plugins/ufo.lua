@@ -1,5 +1,6 @@
 return {
   "kevinhwang91/nvim-ufo",
+  event = "CursorHold",
   dependencies = {
     "kevinhwang91/promise-async",
   },

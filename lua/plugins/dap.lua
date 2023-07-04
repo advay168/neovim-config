@@ -59,6 +59,19 @@ return {
           cwd = "${workspaceFolder}",
         },
       }
+
+      dap.configurations.c = {
+        {
+          name = "Launch file",
+          type = "codelldb",
+          request = "launch",
+          program = function()
+            ---@diagnostic disable-next-line: redundant-parameter, param-type-mismatch
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          end,
+          cwd = "${workspaceFolder}",
+        },
+      }
       local dapui = require("dapui")
       dapui.setup({
         layouts = {
@@ -69,12 +82,12 @@ return {
               { id = "breakpoints", size = 0.16 },
               { id = "watches",     size = 0.25 },
             },
-            size = 0.33,
+            size = 0.1,
             position = "right",
           },
           {
             elements = {
-              { id = "repl", size = 0.45 },
+              { id = "repl", size = 0.9 },
               --{ id = "console", size = 0.55 },
             },
             size = 0.25,
