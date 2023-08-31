@@ -127,14 +127,23 @@ return {
         end,
       })
 
+      vim.api.nvim_create_autocmd("FileType", {
+        desc = "Lazy load web lsps for performance",
+        pattern = "html,css,scss,typescript,javascript,typescriptreact,javascriptreact",
+        group = vim.api.nvim_create_augroup("WebLsps", { clear = true }),
+        callback = function() web() end,
+      })
+
 
       function _G.web()
-        require("lspconfig").tsserver.setup {
+        require("lspconfig").emmet_ls.setup {
+          filetypes = { "astro", "css", "eruby", "html", "htmldjango", "javascriptreact", "less",
+            "pug", "sass", "scss", "svelte", "typescriptreact", "vue" },
           on_attach = on_attach,
           capabilities = capabilities,
         }
 
-        require("lspconfig").emmet_ls.setup {
+        require("lspconfig").tsserver.setup {
           on_attach = on_attach,
           capabilities = capabilities,
         }

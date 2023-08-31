@@ -24,10 +24,6 @@ vim.cmd [[
   autocmd FileType python setlocal shiftwidth=4
 ]]
 
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- vim.opt.foldlevel = 100
-
 vim.opt.undofile = true
 vim.opt.undolevels = 1000
 vim.opt.undoreload = 10000

@@ -21,11 +21,15 @@ return {
       end
       require("bufferline").setup(opts)
 
-      vim.api.nvim_set_keymap("n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true, desc = "Buffer Cycle Prev" })
-      vim.api.nvim_set_keymap("n", "<A-.>", "<cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true, desc = "Buffer Cycle Next" })
+      vim.api.nvim_set_keymap("n", "<A-,>", "<cmd>BufferLineCyclePrev<CR>",
+        { noremap = true, silent = true, desc = "Buffer Cycle Prev" })
+      vim.api.nvim_set_keymap("n", "<A-.>", "<cmd>BufferLineCycleNext<CR>",
+        { noremap = true, silent = true, desc = "Buffer Cycle Next" })
 
-      vim.api.nvim_set_keymap("n", "<A-<>", "<cmd>BufferLineMovePrev<CR>", { noremap = true, silent = true, desc = "Move Buffer Prev" })
-      vim.api.nvim_set_keymap("n", "<A->>", "<cmd>BufferLineMoveNext<CR>", { noremap = true, silent = true, desc = "Move Buffer Next" })
+      vim.api.nvim_set_keymap("n", "<A-<>", "<cmd>BufferLineMovePrev<CR>",
+        { noremap = true, silent = true, desc = "Move Buffer Prev" })
+      vim.api.nvim_set_keymap("n", "<A->>", "<cmd>BufferLineMoveNext<CR>",
+        { noremap = true, silent = true, desc = "Move Buffer Next" })
 
       vim.api.nvim_set_keymap("n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>",
         { noremap = true, silent = true, desc = "Goto visible buffer 1" })
@@ -48,15 +52,16 @@ return {
       vim.api.nvim_set_keymap("n", "<A-0>", "<cmd>BufferLineGoToBuffer -1<CR>",
         { noremap = true, silent = true, desc = "Goto visible last visible buffer" })
 
-      vim.api.nvim_set_keymap("n", "<A-p>", "<cmd>BufferLinePick<CR>", { noremap = true, silent = true, desc = "Pick buffer" })
+      vim.api.nvim_set_keymap("n", "<A-p>", "<cmd>BufferLinePick<CR>",
+        { noremap = true, silent = true, desc = "Pick buffer" })
     end
   },
   {
     "moll/vim-bbye",
-    config = function()
-      vim.api.nvim_set_keymap("n", "<A-q>", "<cmd>Bdelete<CR>", { noremap = true, silent = true, desc = "Delete buffer" })
-      vim.api.nvim_set_keymap("n", "<A-D>", "<cmd>Bdelete!<CR>", { noremap = true, silent = true, desc = "Force Delete buffer" })
-      vim.api.nvim_set_keymap("n", "<A-Q>", "<cmd>Bdelete!<CR>", { noremap = true, silent = true, desc = "Force Delete buffer" })
-    end
+    keys = {
+      { "<A-q>", "<cmd>Bdelete<CR>", noremap = true, silent = true, desc = "Delete buffer", mode = "n" },
+      { "<A-D>", "<cmd>Bdelete!<CR>", noremap = true, silent = true, desc = "Force delete buffer", mode = "n" },
+      { "<A-Q>", "<cmd>Bdelete!<CR>", noremap = true, silent = true, desc = "Force delete buffer", mode = "n" }
+    }
   },
 }
