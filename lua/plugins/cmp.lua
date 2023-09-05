@@ -142,14 +142,6 @@ return {
         -- }
       })
 
-      cmp.setup.filetype("gitcommit", {
-        sources = cmp.config.sources({
-          { name = "cmp_git" },
-        }, {
-          { name = "buffer" },
-        })
-      })
-
       cmp.setup.cmdline({ "/", "?" }, {
         view = {
           entries = { name = "custom", selection_order = "near_cursor" }

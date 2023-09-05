@@ -47,8 +47,8 @@ return {
         vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
         vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
         vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
-        vim.keymap.set("v", "<space>f", function() vim.lsp.buf.format { async = true, range = {} } end, bufopts)
+        vim.keymap.set("n", "<space>ff", function() vim.lsp.buf.format { async = true } end, bufopts)
+        vim.keymap.set("v", "<space>ff", function() vim.lsp.buf.format { async = true, range = {} } end, bufopts)
 
         if client.server_capabilities.codeLensProvider then
           vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
