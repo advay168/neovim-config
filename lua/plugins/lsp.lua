@@ -15,10 +15,22 @@ return {
     config = true,
   },
   {
+    "jose-elias-alvarez/null-ls.nvim",
+    ft = {"python", "javascript", "typescript"},
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.black,
+          null_ls.builtins.formatting.prettierd,
+        }
+      })
+    end
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
-      "jose-elias-alvarez/null-ls.nvim",
       "folke/neodev.nvim",
       "williamboman/mason.nvim",
     },
@@ -62,18 +74,10 @@ return {
         lineFoldingOnly = true
       }
 
-      local null_ls = require("null-ls")
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.black,
-          null_ls.builtins.formatting.prettierd,
-        }
-      })
-
       require("lspconfig").clangd.setup {
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
-          vim.keymap.set("", "<leader>o", "<cmd>ClangdSwitchSourceHeader<CR>")
+          vim.keymap.set("n", "<leader>o", "<cmd>ClangdSwitchSourceHeader<CR>")
         end,
         capabilities = capabilities,
       }
