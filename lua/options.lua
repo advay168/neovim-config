@@ -10,6 +10,7 @@ vim.opt.relativenumber = true
 vim.opt.hidden = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.spelllang = "en_gb"
 vim.opt.backspace = "indent,eol,start"
 vim.opt.scrolloff = 7
 vim.opt.mouse = "a"
