@@ -5,7 +5,20 @@ if webdev_icons_enabled then
 end
 
 return {
-  "lukas-reineke/indent-blankline.nvim",
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    dependencies = {
+      "nvim-treesitter",
+    },
+    config = function()
+      require("ibl").setup({
+        scope = {
+          show_start = false,
+          show_end = false,
+        },
+      })
+    end,
+  },
   "dstein64/nvim-scrollview",
   {
     "nvim-tree/nvim-web-devicons",
@@ -100,7 +113,7 @@ return {
   {
     "moll/vim-bbye",
     keys = {
-      { "<A-q>", "<cmd>Bdelete<CR>", noremap = true, silent = true, desc = "Delete buffer", mode = "n" },
+      { "<A-q>", "<cmd>Bdelete<CR>",  noremap = true, silent = true, desc = "Delete buffer",       mode = "n" },
       { "<A-D>", "<cmd>Bdelete!<CR>", noremap = true, silent = true, desc = "Force delete buffer", mode = "n" },
       { "<A-Q>", "<cmd>Bdelete!<CR>", noremap = true, silent = true, desc = "Force delete buffer", mode = "n" }
     }
@@ -185,7 +198,8 @@ return {
       end
       vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
-      vim.api.nvim_set_keymap("n", "<leader>ne", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Toggle nvim tree" })
+      vim.api.nvim_set_keymap("n", "<leader>ne", "<cmd>NvimTreeToggle<CR>",
+        { noremap = true, silent = true, desc = "Toggle nvim tree" })
     end
   },
 }
