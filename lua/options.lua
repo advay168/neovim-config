@@ -30,3 +30,15 @@ vim.opt.undolevels = 1000
 vim.opt.undoreload = 10000
 
 vim.cmd [[autocmd  TextYankPost * silent! lua vim.highlight.on_yank()]]
+
+local statusline = {
+  ' %t',
+  '%r',
+  '%m',
+  '%=',
+  '%{&filetype}',
+  ' %2p%%',
+  ' %3l:%-2c '
+}
+
+vim.o.statusline = table.concat(statusline, '')

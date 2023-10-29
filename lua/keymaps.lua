@@ -16,6 +16,7 @@ vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>exe 'edit' stdpath('config').'/init.
 vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true, desc = "Terminal escape" })
 
 vim.cmd.cabbrev("W", "w")
+vim.cmd.cabbrev("Wq", "wq")
 vim.cmd.cabbrev("Q", "q")
 vim.cmd.cabbrev("Qa", "qa")
 vim.cmd.cabbrev("QA", "qa")
