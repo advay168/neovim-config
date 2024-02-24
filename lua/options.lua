@@ -44,9 +44,9 @@ vim.opt.listchars = {
 }
 local function update_lead()
     local lcs = vim.opt_local.listchars:get()
-    local tab = vim.fn.str2list(lcs.tab)
+    local leadmultispace = vim.fn.str2list(lcs.leadmultispace)
     local space = vim.fn.str2list(lcs.multispace or lcs.space)
-    local lead = {tab[1]}
+    local lead = {leadmultispace[1]}
     for i = 1, vim.bo.tabstop-1 do
         lead[#lead+1] = space[i % #space + 1]
     end

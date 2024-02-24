@@ -1,4 +1,10 @@
 return {
+  --[[ {
+    "norcalli/nvim-colorizer.lua",
+    config = function ()
+      require("colorizer").setup()
+    end
+  }, ]]
   {
     "iamcco/markdown-preview.nvim",
     build = ":call mkdp#util#install()",
@@ -22,6 +28,7 @@ return {
   },
   {
     "lervag/vimtex",
+    enabled = false,
     config = function()
       vim.g.vimtex_compiler_progname = 'nvr'
       vim.g.vimtex_view_method = 'sioyek'

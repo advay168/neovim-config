@@ -14,6 +14,16 @@ vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>exe 'edit' stdpath('config').'/init.
   { noremap = true, silent = true, desc = "Edit config" })
 
 vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true, desc = "Terminal escape" })
+vim.api.nvim_set_keymap("o", "ie", ":<c-u>normal! ggVG<cr>", { noremap = true, silent = true, desc = "buffer text object" })
+vim.api.nvim_set_keymap("v", "ie", "<esc>ggVG", { noremap = true, silent = true, desc = "buffer text object" })
+
+vim.keymap.set('n', 'q', function()
+  if vim.api.nvim_win_get_config(0).relative ~= "" then
+    return "<C-W>c"
+  else
+    return "q"
+  end
+end, { noremap = true, silent = true, expr = true, desc = "Close floating window" })
 
 vim.cmd.cabbrev("W", "w")
 vim.cmd.cabbrev("Wq", "wq")
