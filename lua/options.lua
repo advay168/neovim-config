@@ -32,7 +32,7 @@ vim.opt.undoreload = 10000
 
 vim.cmd [[autocmd  TextYankPost * silent! lua vim.highlight.on_yank()]]
 
-vim.opt.list = true
+--[[ vim.opt.list = true
 vim.opt.listchars = {
   tab = "⇥ ",
   leadmultispace = "┊ ",
@@ -54,7 +54,7 @@ local function update_lead()
 end
 local group = vim.api.nvim_create_augroup("indentline", {})
 vim.api.nvim_create_autocmd("OptionSet", { group = group, pattern = { "listchars", "tabstop", "filetype" }, callback = update_lead })
-vim.api.nvim_create_autocmd("VimEnter", { group = group, callback = update_lead, once = true })
+vim.api.nvim_create_autocmd("VimEnter", { group = group, callback = update_lead, once = true }) ]]
 
 local statusline = {
   ' %t',
