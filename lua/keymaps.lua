@@ -1,23 +1,29 @@
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Escape" })
-vim.api.nvim_set_keymap("i", "kj", "<Esc>", { noremap = true, silent = true, desc = "Escape" })
 vim.api.nvim_set_keymap("i", "<C-l>", "<CR><ESC>O", { noremap = true, silent = true, desc = "Formatted newline" })
 vim.api.nvim_set_keymap("i", "<C-h>", "<LEFT><CR><ESC>O", { noremap = true, silent = true, desc = "Formatted newline" })
 vim.api.nvim_set_keymap("x", "<Leader>c", [["+y]], { noremap = true, silent = true, desc = "Clipboard copy" })
 vim.api.nvim_set_keymap("n", "<Leader>v", [["+p]], { noremap = true, silent = true, desc = "Clipboard paste" })
 
+
+vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
 vim.api.nvim_set_keymap("n", "<C-6>", "<C-^>", { noremap = true, silent = true, desc = "Alternate file" })
 vim.api.nvim_set_keymap("n", "<esc>", ":noh<return><esc>", { noremap = true, silent = true, desc = "Escape" })
 
-vim.keymap.set({"n", "t"}, "<C-h>", "<Cmd>wincmd h<CR>", { noremap = true, silent = true, desc = "Left window" })
-vim.keymap.set({"n", "t"}, "<C-j>", "<Cmd>wincmd j<CR>", { noremap = true, silent = true, desc = "Bottom window" })
-vim.keymap.set({"n", "t"}, "<C-k>", "<Cmd>wincmd k<CR>", { noremap = true, silent = true, desc = "Above window" })
-vim.keymap.set({"n", "t"}, "<C-l>", "<Cmd>wincmd l<CR>", { noremap = true, silent = true, desc = "Right window" })
+vim.keymap.set({ "n", "t" }, "<C-h>", "<Cmd>wincmd h<CR>", { noremap = true, silent = true, desc = "Left window" })
+vim.keymap.set({ "n", "t" }, "<C-j>", "<Cmd>wincmd j<CR>", { noremap = true, silent = true, desc = "Bottom window" })
+vim.keymap.set({ "n", "t" }, "<C-k>", "<Cmd>wincmd k<CR>", { noremap = true, silent = true, desc = "Above window" })
+vim.keymap.set({ "n", "t" }, "<C-l>", "<Cmd>wincmd l<CR>", { noremap = true, silent = true, desc = "Right window" })
 
 vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>exe 'edit' stdpath('config').'/init.lua'<CR>:cd %:h<CR>",
   { noremap = true, silent = true, desc = "Edit config" })
 
 vim.api.nvim_set_keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true, desc = "Terminal escape" })
-vim.api.nvim_set_keymap("o", "ie", ":<c-u>normal! ggVG<cr>", { noremap = true, silent = true, desc = "buffer text object" })
+vim.api.nvim_set_keymap("o", "ie", ":<c-u>normal! ggVG<cr>",
+  { noremap = true, silent = true, desc = "buffer text object" })
 vim.api.nvim_set_keymap("v", "ie", "<esc>ggVG", { noremap = true, silent = true, desc = "buffer text object" })
 
 vim.keymap.set('n', 'q', function()

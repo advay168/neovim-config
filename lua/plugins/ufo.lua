@@ -1,6 +1,5 @@
 return {
   "kevinhwang91/nvim-ufo",
-  event = "CursorHold",
   dependencies = {
     "kevinhwang91/promise-async",
   },
@@ -13,6 +12,10 @@ return {
     vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
     vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
-    require('ufo').setup()
+    require('ufo').setup({
+        close_fold_kinds_for_ft = {
+          default = {"comment", "imports"}
+        },
+    })
   end
 }

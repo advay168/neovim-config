@@ -30,6 +30,9 @@ return {
     "stevearc/oil.nvim",
     dependencies = { "nvim-web-devicons" },
     cmd = "Oil",
+    keys = {
+      { "-", "<cmd>Oil<CR>", noremap = true, silent = true, desc = "Open Oil", mode = "n" },
+    },
     init = function()
       if vim.fn.argc() == 1 then
         local stat = vim.loop.fs_stat(vim.fn.argv(0))
@@ -57,7 +60,7 @@ return {
   },
   {
     'akinsho/bufferline.nvim',
-    version = "v3.*",
+    -- version = "v3.*",
     dependencies = {
       'nvim-tree/nvim-web-devicons',
       'moll/vim-bbye'

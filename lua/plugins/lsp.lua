@@ -15,16 +15,20 @@ return {
     config = true,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    ft = {"python", "javascript", "typescript"},
+    "stevearc/conform.nvim",
     config = function()
-      local null_ls = require("null-ls")
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.formatting.black,
-          null_ls.builtins.formatting.prettierd,
-        }
+      require("conform").setup({
+        formatters_by_ft = {
+          python = {  "isort", "black" },
+          javascript = { "prettierd" },
+          markdown = { "injected" },
+        },
       })
+      vim.keymap.set({ "n", "v" }, "<space>ff", function()
+        require("conform").format {
+          lsp_fallback = true
+        }
+      end, { noremap = true, silent = true })
     end
   },
   {
@@ -59,13 +63,12 @@ return {
         vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
         vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
         vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set("n", "<space>ff", function() vim.lsp.buf.format { async = true } end, bufopts)
-        vim.keymap.set("v", "<space>ff", function() vim.lsp.buf.format { async = true, range = {} } end, bufopts)
 
-        if client.server_capabilities.codeLensProvider then
-          vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
-          vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run, bufopts)
-        end
+        -- FIXME
+        -- if client.server_capabilities.codeLensProvider then
+        --   vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
+        --   vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run, bufopts)
+        -- end
       end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()

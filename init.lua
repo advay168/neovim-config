@@ -1,10 +1,11 @@
-vim.g.python3_host_prog = os.getenv("PYTHON3_HOST_PROG")
+-- vim.g.python3_host_prog = os.getenv("PYTHON3_HOST_PROG")
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.mapleader = " "
 require("options")
 require("keymaps")
+require("misc")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 

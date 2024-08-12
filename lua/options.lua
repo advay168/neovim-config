@@ -8,6 +8,7 @@ vim.opt.fileformat = "unix"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.hidden = true
+vim.opt.splitright = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.spelllang = "en_gb"
@@ -15,6 +16,7 @@ vim.opt.backspace = "indent,eol,start"
 vim.opt.scrolloff = 7
 vim.opt.mouse = "a"
 vim.opt.matchpairs = vim.opt.matchpairs + "<:>"
+vim.opt.nrformats:append("alpha")
 
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
@@ -66,4 +68,53 @@ local statusline = {
   ' %3l:%-2c '
 }
 
+vim.o.laststatus = 3
 vim.o.statusline = table.concat(statusline, '')
+
+vim.cmd [[
+function! SetStatusLine()
+  set statusline=
+  "set statusline+=%{b:gitbranch}
+  "set statusline+=\ 
+  if &columns < 90
+    set statusline+=%f
+  else
+    set statusline+=%F
+    endif
+    set statusline+=%m
+    set statusline+=%r
+    set statusline+=%=
+    set statusline+=%{strlen(&fenc)?&fenc:'none'}
+    set statusline+=\ 
+    set statusline+=%y
+    set statusline+=\ 
+    set statusline+=%l
+    set statusline+=:
+    set statusline+=%c
+    set statusline+=\ 
+    set statusline+=%L
+    set statusline+=\ 
+    set statusline+=%P
+endfunction
+call SetStatusLine()
+
+function! StatuslineGitBranch()
+  let b:gitbranch=""
+  if &modifiable
+    try
+      let l:dir=expand('%:p:h')
+      let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
+      if !v:shell_error
+        let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').")"
+      endif
+    catch
+    endtry
+  endif
+endfunction
+
+augroup GetGitBranch
+  autocmd!
+  autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
+  autocmd VimResized * call SetStatusLine()
+augroup END
+]]

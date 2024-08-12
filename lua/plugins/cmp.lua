@@ -1,12 +1,16 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CursorHold", "CmdlineEnter" },
+    event = {
+      "InsertEnter",
+      "CursorHold",
+      -- "CmdlineEnter",
+    },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
+      -- "hrsh7th/cmp-path",
+      -- "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "saadparwaiz1/cmp_luasnip",
       -- "zbirenbaum/copilot-cmp",
@@ -116,7 +120,7 @@ return {
             { name = "nvim_lsp" },
             { name = "luasnip" },
             { name = "nvim_lsp_signature_help" },
-            { name = "path" },
+            -- { name = "path" },
           },
           {
             { name = "buffer" }
@@ -142,27 +146,27 @@ return {
         -- }
       })
 
-      cmp.setup.cmdline({ "/", "?" }, {
-        view = {
-          entries = { name = "custom", selection_order = "near_cursor" }
-        },
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" }
-        }
-      })
-
-      cmp.setup.cmdline(":", {
-        view = {
-          entries = { name = "custom", selection_order = "near_cursor" }
-        },
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" }
-        }, {
-          { name = "cmdline" }
-        })
-      })
+      -- cmp.setup.cmdline({ "/", "?" }, {
+      --   view = {
+      --     entries = { name = "custom", selection_order = "near_cursor" }
+      --   },
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = {
+      --     { name = "buffer" }
+      --   }
+      -- })
+      --
+      -- cmp.setup.cmdline(":", {
+      --   view = {
+      --     entries = { name = "custom", selection_order = "near_cursor" }
+      --   },
+      --   mapping = cmp.mapping.preset.cmdline(),
+      --   sources = cmp.config.sources({
+      --     -- { name = "path" }
+      --   }, {
+      --     { name = "cmdline" }
+      --   })
+      -- })
     end
   },
 }
