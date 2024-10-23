@@ -19,8 +19,11 @@ return {
     config = function()
       require("conform").setup({
         formatters_by_ft = {
-          python = {  "isort", "black" },
+          python = { "black" },
           javascript = { "prettierd" },
+          javascriptreact = { "prettierd" },
+          typescript = { "prettierd" },
+          typescriptreact = { "prettierd" },
           markdown = { "injected" },
         },
       })
@@ -65,10 +68,10 @@ return {
         vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
 
         -- FIXME
-        -- if client.server_capabilities.codeLensProvider then
-        --   vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
-        --   vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run, bufopts)
-        -- end
+        if client.server_capabilities.codeLensProvider then
+          vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
+          vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run, bufopts)
+        end
       end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -90,9 +93,16 @@ return {
         capabilities = capabilities,
       }
 
-      require("lspconfig").pyright.setup {
+      require("lspconfig").basedpyright.setup {
         on_attach = on_attach,
         capabilities = capabilities,
+        settings = {
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = "standard",
+            }
+          }
+        },
       }
 
       require("lspconfig").jdtls.setup {
@@ -115,6 +125,7 @@ return {
         },
       }
 
+      -- Prime rust tools from here to access capabilities
       vim.api.nvim_create_autocmd("FileType", {
         desc = "Initialise rust tools to avoid eager loading dap",
         pattern = "rust",
@@ -134,7 +145,6 @@ return {
             },
           })
           vim.cmd.LspStart()
-
           return true
         end,
       })
@@ -148,14 +158,14 @@ return {
 
 
       function _G.web()
-        require("lspconfig").emmet_ls.setup {
+        require("lspconfig").emmet_language_server.setup {
           filetypes = { "astro", "css", "eruby", "html", "htmldjango", "javascriptreact", "less",
             "pug", "sass", "scss", "svelte", "typescriptreact", "vue" },
           on_attach = on_attach,
           capabilities = capabilities,
         }
 
-        require("lspconfig").tsserver.setup {
+        require("lspconfig").vtsls.setup {
           on_attach = on_attach,
           capabilities = capabilities,
         }

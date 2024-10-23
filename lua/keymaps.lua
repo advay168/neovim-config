@@ -60,3 +60,17 @@ endfunction
 nnoremap <leader><C-O> :call JumpToNextBufferInJumplist(-1)<CR>
 nnoremap <leader><C-I> :call JumpToNextBufferInJumplist( 1)<CR>
 ]]
+
+-- Neovide specific
+if vim.g.neovide then
+  vim.g.neovide_scale_factor = 1.0
+  local change_scale_factor = function(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+  end
+  vim.keymap.set("n", "<C-=>", function()
+    change_scale_factor(1.25)
+  end, { noremap = true, silent = true, desc = "Increase font" })
+  vim.keymap.set("n", "<C-->", function()
+    change_scale_factor(1 / 1.25)
+  end, { noremap = true, silent = true, desc = "Decrease font" })
+end
