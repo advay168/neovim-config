@@ -22,6 +22,25 @@ return {
   },
   "dstein64/nvim-scrollview",
   {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {},
+  },
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   ft = "markdown",
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-tree/nvim-web-devicons"
+  --   },
+  --   opts = {
+  --     modes = { "n", "no", "c", "i" },
+  --   },
+  -- },
+  {
     "nvim-tree/nvim-web-devicons",
     cond = webdev_icons_enabled,
     lazy = true,
