@@ -3,7 +3,11 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
       "mfussenegger/nvim-dap-python",
-      "rcarriga/nvim-dap-ui",
+      { "rcarriga/nvim-dap-ui",
+        dependencies = {
+          "nvim-neotest/nvim-nio",
+        },
+      },
       {
         "theHamsta/nvim-dap-virtual-text",
         config = true
@@ -53,7 +57,6 @@ return {
           type = "codelldb",
           request = "launch",
           program = function()
-            ---@diagnostic disable-next-line: redundant-parameter, param-type-mismatch
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
           end,
           cwd = "${workspaceFolder}",
@@ -95,7 +98,7 @@ return {
           },
         },
         floating = {
-          max_width = 0.5, -- Floats will be treated as percentage of your screen.
+          max_width = 0.5,    -- Floats will be treated as percentage of your screen.
           border = "rounded", -- Border style. Can be "single", "double" or "rounded"
           mappings = {
             close = { "q", "<Esc>" },

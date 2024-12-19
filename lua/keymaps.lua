@@ -1,9 +1,17 @@
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Escape" })
 vim.api.nvim_set_keymap("i", "<C-l>", "<CR><ESC>O", { noremap = true, silent = true, desc = "Formatted newline" })
 vim.api.nvim_set_keymap("i", "<C-h>", "<LEFT><CR><ESC>O", { noremap = true, silent = true, desc = "Formatted newline" })
-vim.api.nvim_set_keymap("x", "<Leader>c", [["+y]], { noremap = true, silent = true, desc = "Clipboard copy" })
-vim.api.nvim_set_keymap("n", "<Leader>v", [["+p]], { noremap = true, silent = true, desc = "Clipboard paste" })
 
+-- vim.api.nvim_set_keymap("x", "<Leader>c", [["+y]], { noremap = true, silent = true, desc = "Clipboard copy" })
+-- vim.api.nvim_set_keymap("n", "<Leader>v", [["+p]], { noremap = true, silent = true, desc = "Clipboard paste" })
+
+vim.keymap.set("n", "<insert>", [["+p]], { noremap = true, silent = true, desc = "Clipboard paste" })
+vim.keymap.set("v", "<insert>", [["+P]], { noremap = true, silent = true, desc = "Clipboard paste" })
+vim.keymap.set({"i", "c"}, "<insert>", [[<c-r>+]], { noremap = true, silent = true, desc = "Clipboard paste" })
+
+vim.keymap.set("n", "yc", function() vim.fn.setreg("+", vim.fn.getreg('"')) end, { noremap = true })
+
+vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left><Left>")
 
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -11,12 +19,13 @@ vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, si
 vim.keymap.set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 vim.api.nvim_set_keymap("n", "<C-6>", "<C-^>", { noremap = true, silent = true, desc = "Alternate file" })
-vim.api.nvim_set_keymap("n", "<esc>", ":noh<return><esc>", { noremap = true, silent = true, desc = "Escape" })
+vim.api.nvim_set_keymap("n", "<esc>", "<cmd>noh<return><esc>", { noremap = true, silent = true, desc = "Escape" })
 
-vim.keymap.set({ "n", "t" }, "<C-h>", "<Cmd>wincmd h<CR>", { noremap = true, silent = true, desc = "Left window" })
-vim.keymap.set({ "n", "t" }, "<C-j>", "<Cmd>wincmd j<CR>", { noremap = true, silent = true, desc = "Bottom window" })
-vim.keymap.set({ "n", "t" }, "<C-k>", "<Cmd>wincmd k<CR>", { noremap = true, silent = true, desc = "Above window" })
-vim.keymap.set({ "n", "t" }, "<C-l>", "<Cmd>wincmd l<CR>", { noremap = true, silent = true, desc = "Right window" })
+vim.keymap.set({ "n", "t" }, "<C-h>", "<Cmd>wincmd h<CR>", { noremap = true, silent = true, desc = "Move to left window" })
+vim.keymap.set({ "n", "t" }, "<C-j>", "<Cmd>wincmd j<CR>", { noremap = true, silent = true, desc = "Move to bottom window" })
+vim.keymap.set({ "n", "t" }, "<C-k>", "<Cmd>wincmd k<CR>", { noremap = true, silent = true, desc = "Move to above window" })
+vim.keymap.set({ "n", "t" }, "<C-l>", "<Cmd>wincmd l<CR>", { noremap = true, silent = true, desc = "Move to right window" })
+vim.keymap.set({ "n", "t" }, "<C-w>=", "<Cmd>windo setlocal nowinfixwidth nowinfixheight | wincmd =<CR>", { noremap = true, silent = true, desc = "Move to right window" })
 
 vim.api.nvim_set_keymap("n", "<C-q>", "<cmd>exe 'edit' stdpath('config').'/init.lua'<CR>:cd %:h<CR>",
   { noremap = true, silent = true, desc = "Edit config" })

@@ -2,6 +2,7 @@ return {
   "akinsho/toggleterm.nvim",
   version = "*",
   keys = { "<leader>tf", "<leader>th", "<leader>tv" },
+  cmd = {"TermExec", },
   config = function()
     require("toggleterm").setup {
       size = function(term)
@@ -12,7 +13,7 @@ return {
         end
       end,
       insert_mappings = false,
-      direction = "float",
+      direction = "vertical",
     }
 
     vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>",

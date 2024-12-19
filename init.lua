@@ -21,10 +21,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins",
   {
     change_detection = {
-      enabled = false
+      enabled = false,
     },
     install = {
-      colorscheme = { "gruvbox" }
+      colorscheme = { "gruvbox" },
+    },
+    rocks = {
+      enabled = false,
     },
   }
 )

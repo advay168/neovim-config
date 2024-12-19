@@ -70,8 +70,10 @@ return {
         -- FIXME
         if client.server_capabilities.codeLensProvider then
           vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
-          vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run, bufopts)
+          vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, bufopts)
         end
+        vim.keymap.set("n", "<leader>gh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+          bufopts)
       end
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
