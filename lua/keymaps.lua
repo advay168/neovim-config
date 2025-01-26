@@ -11,7 +11,8 @@ vim.keymap.set({"i", "c"}, "<insert>", [[<c-r>+]], { noremap = true, silent = tr
 
 vim.keymap.set("n", "yc", function() vim.fn.setreg("+", vim.fn.getreg('"')) end, { noremap = true })
 
-vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left><Left>")
+vim.keymap.set("n", "<leader>s", ":%s//&/g<Left><Left><Left><Left>")
+vim.keymap.set("n", "<leader>S", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>")
 
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
