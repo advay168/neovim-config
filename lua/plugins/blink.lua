@@ -7,7 +7,6 @@ return {
     },
     {
       'L3MON4D3/LuaSnip',
-      -- enabled = false,
       version = 'v2.*',
       dependencies = {
         {
@@ -25,7 +24,7 @@ return {
   },
 
   -- use a release tag to download pre-built binaries
-  -- version = 'v0.*',
+  version = 'v0.*',
   build = 'cargo build --release',
 
   ---@module 'blink.cmp'
@@ -100,7 +99,6 @@ return {
 
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
-      cmdline = {},
     },
   },
   opts_extend = { "sources.default" }

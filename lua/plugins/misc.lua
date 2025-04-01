@@ -10,6 +10,8 @@ return {
     event = "VeryLazy",
     config = true
   },
-  --"junegunn/rainbow_parentheses.vim" ,
-  --"kien/rainbow_parentheses.vim" ,
+  -- {
+  --   "Almo7aya/openingh.nvim",
+  --   config = true,
+  -- },
 }

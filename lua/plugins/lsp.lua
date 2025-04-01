@@ -87,6 +87,7 @@ return {
       }
 
       require("lspconfig").clangd.setup {
+        cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           vim.keymap.set("n", "<leader>o", "<cmd>ClangdSwitchSourceHeader<CR>")

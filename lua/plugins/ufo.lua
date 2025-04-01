@@ -13,9 +13,12 @@ return {
     vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
     require('ufo').setup({
-        close_fold_kinds_for_ft = {
-          default = {"comment", "imports"}
+      close_fold_kinds_for_ft = {
+        default = {
+          "imports",
+          -- "comment",
         },
+      },
     })
   end
 }
