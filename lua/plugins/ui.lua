@@ -7,9 +7,9 @@ end
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    dependencies = {
-      "nvim-treesitter",
-    },
+    -- dependencies = {
+    --   "nvim-treesitter",
+    -- },
     config = function()
       require("ibl").setup({
         indent = { char = "┆" },
@@ -20,26 +20,18 @@ return {
       })
     end,
   },
-  "dstein64/nvim-scrollview",
+  {
+    "dstein64/nvim-scrollview",
+  },
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
     },
+    ft = {"markdown"},
     opts = {},
   },
-  -- {
-  --   "OXY2DEV/markview.nvim",
-  --   ft = "markdown",
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --     "nvim-tree/nvim-web-devicons"
-  --   },
-  --   opts = {
-  --     modes = { "n", "no", "c", "i" },
-  --   },
-  -- },
   {
     "nvim-tree/nvim-web-devicons",
     cond = webdev_icons_enabled,

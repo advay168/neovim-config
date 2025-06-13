@@ -24,6 +24,22 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.tabstop = 2
 
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldtext = ''
+vim.o.foldenable = true
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldmethod = 'expr'
+-- TODO
+print("Add lsp folding")
+
+if os.getenv("wt") == "1" then
+  -- vim.o.fillchars = 'fold: ,foldopen:,foldsep: ,foldclose:'
+  vim.o.fillchars = 'foldopen:,foldclose:'
+end
+
+
 vim.cmd [[
   autocmd FileType python setlocal shiftwidth=4
 ]]
@@ -74,8 +90,8 @@ vim.o.statusline = table.concat(statusline, '')
 vim.cmd [[
 function! SetStatusLine()
   set statusline=
-  "set statusline+=%{b:gitbranch}
-  "set statusline+=\ 
+  set statusline+=%{b:gitbranch}
+  set statusline+=\ 
   if &columns < 90
     set statusline+=%f
   else

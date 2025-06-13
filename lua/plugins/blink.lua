@@ -3,14 +3,13 @@ return {
   -- optional: provides snippets for the snippet source
   dependencies = {
     {
-      "rafamadriz/friendly-snippets",
-    },
-    {
       'L3MON4D3/LuaSnip',
       version = 'v2.*',
+      enabled = false,
       dependencies = {
         {
           "honza/vim-snippets",
+          -- "rafamadriz/friendly-snippets",
         },
       },
       config = function()
@@ -86,7 +85,7 @@ return {
     },
 
     snippets = {
-      preset = "luasnip",
+      -- preset = "luasnip",
       -- expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
       -- active = function(filter)
       --   if filter and filter.direction then

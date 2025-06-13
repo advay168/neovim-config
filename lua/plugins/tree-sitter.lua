@@ -3,12 +3,12 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     event = "CursorHold",
     dependencies = { "nvim-treesitter" },
-    config = function ()
-      require'treesitter-context'.setup{
-        max_lines = 10, -- How many lines the window should span. Values <= 0 mean no limit.
-        min_window_height = 15, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+    config = function()
+      require("treesitter-context").setup ({
+        max_lines = 10,          -- How many lines the window should span. Values <= 0 mean no limit.
+        min_window_height = 15,  -- Minimum editor window height to enable context. Values <= 0 mean no limit.
         multiline_threshold = 5, -- Maximum number of lines to show for a single context
-      }
+      })
     end
   },
   {
@@ -94,7 +94,6 @@ return {
     event = "VeryLazy",
     build = ":TSInstallSync all | TSUpdateSync",
     opts = {
-      --ensure_installed = "all",
       highlight = {
         enable = true,
       }
