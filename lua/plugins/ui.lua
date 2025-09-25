@@ -29,7 +29,8 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
     },
-    ft = {"markdown"},
+    enabled = false,
+    ft = { "markdown" },
     opts = {},
   },
   {

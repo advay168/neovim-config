@@ -2,6 +2,16 @@ vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true, silent = true, des
 vim.api.nvim_set_keymap("i", "<C-l>", "<CR><ESC>O", { noremap = true, silent = true, desc = "Formatted newline" })
 vim.api.nvim_set_keymap("i", "<C-h>", "<LEFT><CR><ESC>O", { noremap = true, silent = true, desc = "Formatted newline" })
 
+
+vim.api.nvim_set_keymap("n", "H", "^", { noremap = true, silent = true, desc = "First non-blank character" })
+vim.api.nvim_set_keymap("n", "L", "$", { noremap = true, silent = true, desc = "Last character" })
+vim.api.nvim_set_keymap("n", "M", "%", { silent = true, desc = "Match brackets" })
+
+vim.api.nvim_set_keymap("x", "H", "^", { noremap = true, silent = true, desc = "First non-blank character" })
+vim.api.nvim_set_keymap("x", "L", "g_", { noremap = true, silent = true, desc = "Last character" })
+vim.api.nvim_set_keymap("x", "M", "%", { silent = true, desc = "Match brackets" })
+
+
 -- vim.api.nvim_set_keymap("x", "<Leader>c", [["+y]], { noremap = true, silent = true, desc = "Clipboard copy" })
 -- vim.api.nvim_set_keymap("n", "<Leader>v", [["+p]], { noremap = true, silent = true, desc = "Clipboard paste" })
 

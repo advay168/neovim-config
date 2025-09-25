@@ -1,3 +1,5 @@
+vim.diagnostic.config({ virtual_text = true, severity_sort = true })
+
 return {
   {
     "williamboman/mason.nvim",
@@ -11,7 +13,7 @@ return {
   },
   {
     "j-hui/fidget.nvim",
-    tag = "legacy",
+    version = "*",
     config = true,
   },
   {
@@ -25,19 +27,19 @@ return {
           typescript = { "prettierd" },
           typescriptreact = { "prettierd" },
           markdown = { "injected" },
+          typst = { "typstyle" },
         },
       })
       vim.keymap.set({ "n", "v" }, "<space>ff", function()
-        require("conform").format {
+        require("conform").format({
           lsp_fallback = true
-        }
+        })
       end, { noremap = true, silent = true })
     end
   },
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- "hrsh7th/cmp-nvim-lsp",
       "saghen/blink.cmp",
       "folke/neodev.nvim",
       "williamboman/mason.nvim",
@@ -47,16 +49,22 @@ return {
 
       local opts = { noremap = true, silent = true }
       vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
-      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-      vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
       vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
       local on_attach = function(client, bufnr)
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
-        vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", bufopts)
+        vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<CR>", bufopts)
         vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end, bufopts)
+        vim.keymap.set("i", "<c-s>", function()
+          vim.lsp.buf.signature_help({
+            border = "rounded",
+            min_width = 1,
+            max_width = 100,
+            max_height = 10,
+          })
+        end, bufopts)
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
         vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, bufopts)
         vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
@@ -65,29 +73,34 @@ return {
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, bufopts)
         vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-        vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+
+        vim.keymap.set("n", "<leader>gh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+          bufopts)
+
+        if false then
+          -- treesitter folding seems better
+          if client:supports_method('textDocument/foldingRange') then
+            local win = vim.api.nvim_get_current_win()
+            vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+          end
+        end
 
         -- FIXME
         if client.server_capabilities.codeLensProvider then
           vim.cmd [[autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
           vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, bufopts)
         end
-        vim.keymap.set("n", "<leader>gh", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
-          bufopts)
       end
 
-      -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-
 
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
-        lineFoldingOnly = true
+        lineFoldingOnly = true,
       }
 
       require("lspconfig").clangd.setup {
-        cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
+        cmd = { 'clangd', '--background-index', '--clang-tidy', '--log=verbose' },
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           vim.keymap.set("n", "<leader>o", "<cmd>ClangdSwitchSourceHeader<CR>")

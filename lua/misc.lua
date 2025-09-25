@@ -1,4 +1,4 @@
-vim.cmd[[
+vim.cmd [[
 " https://gist.github.com/romainl/eae0a260ab9c135390c30cd370c20cd7
 function! Redir(cmd, rng, start, end)
 for win in range(1, winnr('$'))
@@ -38,7 +38,7 @@ for win in range(1, winnr('$'))
 				command! -nargs=1 -complete=command -range Redir silent call Redir(<q-args>, <range>, <line1>, <line2>)
 				]]
 
-vim.cmd[[
+vim.cmd [[
 " https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
 set grepprg=rg\ --vimgrep
 function! Grep(...)
@@ -58,7 +58,18 @@ augroup quickfix
 augroup END
 ]]
 
-vim.cmd[[
+vim.cmd [[
 " Tpope
 autocmd VimResized * wincmd =
 ]]
+
+
+vim.api.nvim_create_user_command("Vr", function(opts)
+	local width = math.floor(vim.opt.columns:get() * opts.args / 100.0)
+	vim.api.nvim_win_set_width(0, width)
+end, { nargs = 1 })
+
+vim.api.nvim_create_user_command("Hr", function(opts)
+	local height = math.floor((vim.opt.lines:get() - vim.opt.cmdheight:get()) * opts.args / 100.0)
+	vim.api.nvim_win_set_height(0, height)
+end, { nargs = 1 })
