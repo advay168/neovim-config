@@ -43,25 +43,15 @@ return {
     dependencies = { "nvim-web-devicons" },
     cmd = "Oil",
     keys = {
-      { "-", "<cmd>Oil<CR>", noremap = true, silent = true, desc = "Open Oil", mode = "n" },
+      { "-", "<cmd>Oil<CR>", silent = true, desc = "Open Oil" },
     },
     init = function()
       if vim.fn.argc() == 1 then
-        local stat = vim.loop.fs_stat(vim.fn.argv(0))
+        local stat = vim.uv.fs_stat(vim.fn.argv(0))
         if stat and stat.type == "directory" then
           require("lazy").load({ plugins = { "oil.nvim" } })
         end
       end
-      --[[ if not require("lazy.core.config").plugins["oil.nvim"]._.loaded then
-        vim.api.nvim_create_autocmd("BufNew", {
-          callback = function()
-            if vim.fn.isdirectory(vim.fn.expand("<afile>")) == 1 then
-              require("lazy").load({ plugins = { "oil.nvim" } })
-              return true
-            end
-          end,
-        })
-      end ]]
     end,
     opts = {
       columns = {
@@ -75,12 +65,11 @@ return {
     -- version = "v3.*",
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-      'moll/vim-bbye'
     },
     opts = {
       options = {
-        close_command = "Bdelete! %d",
-        right_close_command = "Bdelete! %d",
+        close_command = function(bufnum) require("snacks").bufdelete.delete(bufnum) end,
+        right_mouse_command = function(bufnum) require("snacks").bufdelete.delete(bufnum) end,
         diagnostics = "nvim_lsp",
       }
     },
@@ -128,14 +117,6 @@ return {
       vim.api.nvim_set_keymap("n", "<A-p>", "<cmd>BufferLinePick<CR>",
         { noremap = true, silent = true, desc = "Pick buffer" })
     end
-  },
-  {
-    "moll/vim-bbye",
-    keys = {
-      { "<A-q>", "<cmd>Bdelete<CR>",  noremap = true, silent = true, desc = "Delete buffer",       mode = "n" },
-      { "<A-D>", "<cmd>Bdelete!<CR>", noremap = true, silent = true, desc = "Force delete buffer", mode = "n" },
-      { "<A-Q>", "<cmd>Bdelete!<CR>", noremap = true, silent = true, desc = "Force delete buffer", mode = "n" }
-    }
   },
   {
     "nvim-lualine/lualine.nvim",

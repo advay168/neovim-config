@@ -9,6 +9,11 @@ return
       explorer = {},
     },
     keys = {
+      -- Bdelete
+      { "<A-q>",           function() Snacks.bufdelete() end,                    desc = "Delete buffer" },
+      { "<A-D>",           function() Snacks.bufdelete({ force = true }) end,    desc = "Force delete buffer" },
+      { "<A-Q>",           function() Snacks.bufdelete({ force = true }) end,    desc = "Force delete buffer" },
+      -- Picker
       { "<leader>s",       function() Snacks.picker() end,                       desc = "Snacks picker" },
       -- Top Pickers & Explorer
       { "<leader><space>", function() Snacks.picker.smart() end,                 desc = "Smart Find Files" },
