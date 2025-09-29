@@ -90,7 +90,7 @@ vim.o.statusline = table.concat(statusline, '')
 vim.cmd [[
 function! SetStatusLine()
   set statusline=
-  set statusline+=%{b:gitbranch}
+  set statusline+=%{get(b:,'gitbranch','')}
   set statusline+=\ 
   if &columns < 90
     set statusline+=%f

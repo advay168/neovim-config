@@ -2,6 +2,13 @@ vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true, silent = true, des
 vim.api.nvim_set_keymap("i", "<C-l>", "<CR><ESC>O", { noremap = true, silent = true, desc = "Formatted newline" })
 vim.api.nvim_set_keymap("i", "<C-h>", "<LEFT><CR><ESC>O", { noremap = true, silent = true, desc = "Formatted newline" })
 
+vim.keymap.set("n", "gf", function()
+  local oldpath = vim.o.path
+  vim.o.path = "**"
+  vim.api.nvim_feedkeys('gf', 'xn', false)
+  vim.o.path = oldpath
+end, { noremap = true, silent = true, desc = "Goto file" })
+
 vim.keymap.set("n", "=l", function()
   local win = vim.api.nvim_get_current_win()
   if vim.fn.getloclist(win, { winid = 0 }).winid > 0 then

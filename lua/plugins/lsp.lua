@@ -5,11 +5,12 @@ return {
     "williamboman/mason.nvim",
     opts = {},
   },
-  {
-    "j-hui/fidget.nvim",
-    version = "*",
-    opts = {},
-  },
+  -- Using the Snacks notify snippet instead.
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   version = "*",
+  --   opts = {},
+  -- },
   {
     "stevearc/conform.nvim",
     config = function()

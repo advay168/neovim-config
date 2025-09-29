@@ -5,21 +5,21 @@ if webdev_icons_enabled then
 end
 
 return {
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    -- dependencies = {
-    --   "nvim-treesitter",
-    -- },
-    config = function()
-      require("ibl").setup({
-        indent = { char = "┆" },
-        scope = {
-          show_start = false,
-          show_end = false,
-        },
-      })
-    end,
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   -- dependencies = {
+  --   --   "nvim-treesitter",
+  --   -- },
+  --   config = function()
+  --     require("ibl").setup({
+  --       indent = { char = "┆" },
+  --       scope = {
+  --         show_start = false,
+  --         show_end = false,
+  --       },
+  --     })
+  --   end,
+  -- },
   {
     "dstein64/nvim-scrollview",
   },
