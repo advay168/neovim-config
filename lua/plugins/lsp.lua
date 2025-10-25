@@ -23,6 +23,7 @@ return {
           typescriptreact = { "prettierd" },
           markdown = { "injected" },
           typst = { "typstyle" },
+          ocaml = { "ocamlformat" },
         },
       })
       vim.keymap.set({ "n", "v" }, "<leader>ff", function()
@@ -103,14 +104,29 @@ return {
 
           -- Server specific
           if client.name == "clangd" then
-            vim.keymap.set("n", "<leader>o", "<cmd>LspClangdSwitchSourceHeader<CR>")
+            vim.keymap.set("n", "<M-o>", "<cmd>LspClangdSwitchSourceHeader<CR>")
+          end
+          if client.name == "ocamllsp" then
+            vim.keymap.set("n", "<M-o>", "<cmd>LspOcamllspSwitchImplIntf<CR>")
           end
         end
+      })
+
+      vim.lsp.config("ocamllsp", {
+        settings = {
+          codelens = { enable = true },
+          inlayHints = { hintPatternVariables = true, hintLetBindings = true },
+          extendedHover = { enable = true },
+          syntaxDocumentation = { enable = true },
+          merlinJumpCodeActions = { enable = true },
+        }
+
       })
 
       vim.lsp.config("clangd", {
         cmd = { 'clangd', '--background-index', '--clang-tidy', '--log=verbose' },
       })
+
 
       vim.lsp.config("basedpyright", {
         settings = {
@@ -142,6 +158,7 @@ return {
         "hls",
         "vtsls",
         "cssls",
+        "ocamllsp"
       })
     end
   },
